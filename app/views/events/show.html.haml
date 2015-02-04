@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Entry:
+  = @event.entry
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
