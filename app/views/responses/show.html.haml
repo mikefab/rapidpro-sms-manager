@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Category:
+  = @response.category
+%p
+  %b Node:
+  = @response.node
+%p
+  %b Time:
+  = @response.time
+%p
+  %b Text:
+  = @response.text
+%p
+  %b Rule value:
+  = @response.rule_value
+%p
+  %b Value:
+  = @response.value
+%p
+  %b Label:
+  = @response.label
+%p
+  %b Phone:
+  = @response.phone
+
+= link_to 'Edit', edit_response_path(@response)
+\|
+= link_to 'Back', responses_path

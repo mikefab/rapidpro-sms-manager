@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
-
+gem 'pry'
+gem 'hashie'
 gem 'bower-rails'
 gem 'haml-rails'
-
+gem 'rubocop'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'rails_12factor'

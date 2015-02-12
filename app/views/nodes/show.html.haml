@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Node:
+  = @node.node
+%p
+  %b Arrived on:
+  = @node.arrived_on
+%p
+  %b Left on:
+  = @node.left_on
+%p
+  %b Text:
+  = @node.text
+%p
+  %b Type:
+  = @node.type
+%p
+  %b Value:
+  = @node.value
+
+= link_to 'Edit', edit_node_path(@node)
+\|
+= link_to 'Back', nodes_path

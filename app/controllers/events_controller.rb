@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  respond_to :json
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   skip_before_filter  :verify_authenticity_token
 
@@ -26,16 +27,86 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     #@event = Event.new(event_params)
-    @event = Event.new(entry: params)
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    @event  = Event.new(entry: params)
+    phone   = "#{params[:phone]}#{params[:run]}"
+    @record = Record.create!(
+      run:     params[:run]    ,
+      phone:   phone,
+      text:    params[:text]   ,
+      flow:    params[:flow]   ,
+      step:    params[:step]   ,
+      channel: params[:channel],
+      values:  JSON.parse(params[:values]),
+      steps:   JSON.parse(params[:steps]),
+      primary: JSON.parse(params[:steps]).first['node'],
+      ids:     JSON.parse(params[:steps]).map{|e| e['node']}
+      )
+
+    @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
+    @completion.update!(
+      run:     params[:run]    ,
+      phone:   phone  ,
+      text:    params[:text]   ,
+      flow:    params[:flow]   ,
+      step:    params[:step]   ,
+      values:  JSON.parse(params[:values]),
+      steps:   JSON.parse(params[:steps]),
+      primary: JSON.parse(params[:steps]).first['node'],
+      ids:     JSON.parse(params[:steps]).map{|e| e['node']}
+      )
+
+
+
+    # JSON.parse(params[:steps]).each do |s|
+    #   unless !!Node.where(node: s['node']).first
+    #     @node = Node.create!(
+    #       node:       s['node']       ,
+    #       arrived_on: s['arrived_on'] ,
+    #       left_on:    s['left_on']    ,
+    #       text:       s['text']       ,
+    #       type:       s['type']       ,
+    #       value:      s['value']
+    #       )
+    #   end
+    # end
+
+
+    # JSON.parse(params[:values]).each do |v|
+    #   unless !!Response.where(phone: params[:phone], node: v['node']).first
+    #     @response = Response.create!(
+    #       category:   v['category']   ,
+    #       node:       v['node']       ,
+    #       time:       v['time']       ,
+    #       text:       v['text']       ,
+    #       rule_value: v['rule_value'] ,
+    #       value:      v['value']      ,
+    #       label:      v['label']      ,
+    #       phone:      params[:phone]
+    #     )
+    #   end
+    # end
+
+
+    @record.save!
+
+
+    if @event.save
+      render json: {notice: 'Event was successfully created.'}
+    else
+      render json: {notice: 'Failure'}
     end
+
+
+    # respond_to do |format|
+    #   if @event.save
+    #     puts "!!!!!!"
+    #     format.html { redirect_to @event, notice: 'Event was successfully created.' }
+    #     format.json { render :show, status: :created, location: @event }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @event.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /events/1
@@ -72,4 +143,15 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:entry)
     end
+
+    def record_params
+      params.require(:record).permit(:run, :phone, :text, :flow, :relayer, :step, :values, :steps)
+    end
+
+    def node_params
+      params.require(:node).permit(:node, :arrived_on, :left_on, :text, :type, :value)
+    end
+
+
+
 end
