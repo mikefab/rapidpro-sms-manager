@@ -1,0 +1,43 @@
+= form_for @record do |f|
+  - if @record.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@record.errors.count, "error")} prohibited this record from being saved:"
+      %ul
+        - @record.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :run
+    = f.number_field :run
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :text
+    = f.text_field :text
+  .field
+    = f.label :flow
+    = f.number_field :flow
+  .field
+    = f.label :relayer
+    = f.text_field :relayer
+  .field
+    = f.label :channel
+    = f.text_field :channel
+  .field
+    = f.label :values
+    = f.text_field :values
+  .field
+    = f.label :steps
+    = f.text_field :steps
+  .field
+    = f.label :step
+    = f.text_field :step
+  .field
+    = f.label :primary
+    = f.text_field :primary
+  .field
+    = f.label :ids
+    = f.text_field :ids
+  .actions
+    = f.submit 'Save'

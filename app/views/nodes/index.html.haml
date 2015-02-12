@@ -1,0 +1,31 @@
+%h1 Listing nodes
+
+%table
+  %thead
+    %tr
+      %th Node
+      %th Arrived on
+      %th Left on
+      %th Text
+      %th Type
+      %th Value
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @nodes.each do |node|
+      %tr
+        %td= node.node
+        %td= node.arrived_on
+        %td= node.left_on
+        %td= node.text
+        %td= node.type
+        %td= node.value
+        %td= link_to 'Show', node
+        %td= link_to 'Edit', edit_node_path(node)
+        %td= link_to 'Destroy', node, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Node', new_node_path

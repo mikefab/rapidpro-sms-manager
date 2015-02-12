@@ -1,0 +1,22 @@
+{
+  "name": "mercy3",
+  "version": "0.0.0",
+  "authors": [
+    "mikefab <mikefabrikant@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "bootstrap-sass-official": "latest",
+    "underscore": "latest",
+    "angular-sanitize": "latest"
+  }
+}

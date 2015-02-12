@@ -1,0 +1,35 @@
+%h1 Listing responses
+
+%table
+  %thead
+    %tr
+      %th Category
+      %th Node
+      %th Time
+      %th Text
+      %th Rule value
+      %th Value
+      %th Label
+      %th Phone
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @responses.each do |response|
+      %tr
+        %td= response.category
+        %td= response.node
+        %td= response.time
+        %td= response.text
+        %td= response.rule_value
+        %td= response.value
+        %td= response.label
+        %td= response.phone
+        %td= link_to 'Show', response
+        %td= link_to 'Edit', edit_response_path(response)
+        %td= link_to 'Destroy', response, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Response', new_response_path
