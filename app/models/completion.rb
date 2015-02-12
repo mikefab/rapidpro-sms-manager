@@ -18,15 +18,39 @@ class Completion
 
 
   def self.diagram(node)
+    node2qustion = {}
+    node2label   = {}
+    hits         = {}
+
+    Completion.all.group_by(&:ids).each do |arry|
+      arry[1].each do |completion| 
+        completion.steps.each do |s|
+          puts "#{s.type} #{!!s.text} #{s.node}!!!!!"
+          node2qustion[s.node] = s.text if !!s.text and s.type == "A"
+        end
+
+        completion.values.each do |v|
+          node2label[v['node']] = v['label']
+        end
+      end
+    end
+
+    Completion.all.each do |c|
+      c.steps.each do |s|
+        hits[s.node] = !!hits[s.node] ? hits[s.node] + 1 : 1
+      end
+    end
+
+
     arrays = Completion.where(primary: node).map(&:ids).uniq
-    seen  = {}    
-    nodes = []
-    links = []    
+    seen   = {}    
+    nodes  = []
+    links  = []    
     arrays.each do |ar|
       ar.each_with_index do |e, i|
         unless seen[e]
           seen[e] = 1
-          nodes << {name: e, id: e}
+          nodes << {name: e, id: e, text: node2qustion[e], label: node2label[e], hits: hits[e]}
         end
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
       end

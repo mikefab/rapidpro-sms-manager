@@ -1,10 +1,11 @@
 %div{"ng-controller" => "surveyCtrl"}
+  {{active}}
   .row
     .col-md-6
       %ul{'ng-repeat' => 'survey in surveys'}
-        %li{'ng-click' => "get_diagram(survey.node)"}
+        %li{'ng-click' => 'get_diagram(survey.node)', 'ng-class'=>"{active: selected == survey.node}"}
           {{survey.question}}
-          
+
     .col-md-6
       %diagram{'nodes' => 'nodes'}
         %div
