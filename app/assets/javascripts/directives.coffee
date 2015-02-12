@@ -142,7 +142,7 @@ angular.module('myApp.directives', [])
             height: height
           attrs:
             text:
-              text: node.name[0..4]
+              text: node.label + " " + node.hits 
               'font-size': letterSize
               'font-family': 'monospace'
             rect:
@@ -162,7 +162,7 @@ angular.module('myApp.directives', [])
       graph = new (joint.dia.Graph)
       paper = new (joint.dia.Paper)(
         el: $el[0]
-        width: 900
+        width: 1900
         height: 400
         gridSize: 1
         model: graph)
