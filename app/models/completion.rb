@@ -25,7 +25,6 @@ class Completion
     Completion.all.group_by(&:ids).each do |arry|
       arry[1].each do |completion| 
         completion.steps.each do |s|
-          puts "#{s.type} #{!!s.text} #{s.node}!!!!!"
           node2qustion[s.node] = s.text if !!s.text and s.type == "A"
         end
 
