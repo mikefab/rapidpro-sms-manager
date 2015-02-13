@@ -1,11 +1,27 @@
-%div{"ng-controller" => "surveyCtrl"}
-  {{active}}
+%div.container{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-6
-      %ul{'ng-repeat' => 'survey in surveys'}
-        %li{'ng-click' => 'get_diagram(survey.node)', 'ng-class'=>"{active: selected == survey.node}"}
-          {{survey.question}}
+    .col-md-10.pre-scrollable{style: 'max-height:500px;'}
+      %p
+        %ul{'ng-repeat' => 'survey in surveys'}
+          %li{'ng-click' => 'get_diagram(survey.node)', 'ng-class'=>"{active: selected == survey.node}"}
+            {{survey.question}}
+    .col-md-2
 
-    .col-md-6
-      %diagram{'nodes' => 'nodes'}
-        %div
+
+  .row
+    .col-md-12
+
+
+      %p
+        %diagram{nodes: 'nodes'}
+          %div
+
+        %p{'ng-show' => 'instructions == true'}
+          %strong{style: 'font-size:24px'}
+            Mouse over the nodes for more information.
+        %p{'ng-show' => '!!message'}
+          Message: {{message}}
+        %p{'ng-show' => '!!label'}
+          Label: {{label}}
+        %p{'ng-show' => '!!hits'}
+          Hits: {{hits}}
