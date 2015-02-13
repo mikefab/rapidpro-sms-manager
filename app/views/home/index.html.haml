@@ -1,9 +1,9 @@
 %div.container{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-10.pre-scrollable{style: 'max-height:500px;'}
+    .col-md-10.pre-scrollable{style: 'max-height:1000px;'}
       %p
         %ul{'ng-repeat' => 'survey in surveys'}
-          %li{'ng-click' => 'get_diagram(survey.node)', 'ng-class'=>"{active: selected == survey.node}"}
+          %li{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
             {{survey.question}}
     .col-md-2
 
