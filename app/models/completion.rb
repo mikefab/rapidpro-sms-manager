@@ -80,7 +80,6 @@ class Completion
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
       end
     end
-    puts "#{nodes.count}  **** #{nodes} !!!!"
     return {nodes: nodes, links: links}
   end
 

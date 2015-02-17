@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # # resources :nodes
 
-  #resources :events
+  resources :events
   #resources :completions
 
   namespace :api do
