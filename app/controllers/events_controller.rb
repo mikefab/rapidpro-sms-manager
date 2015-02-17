@@ -26,9 +26,19 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+
     #@event = Event.new(event_params)
     @event  = Event.new(entry: params)
     phone   = "#{params[:phone]}#{params[:run]}"
+    steps   = JSON.parse(params[:steps])
+
+    # I think that text of last step should not be blank
+    unless steps.empty?
+      if steps.last['type'] == 'R'
+        steps.last['text'] = params[:text]
+      end
+    end
+
     @record = Record.create!(
       run:     params[:run]    ,
       phone:   phone,
@@ -37,9 +47,11 @@ class EventsController < ApplicationController
       step:    params[:step]   ,
       channel: params[:channel],
       values:  JSON.parse(params[:values]),
-      steps:   JSON.parse(params[:steps]),
+      steps:   steps,
       primary: JSON.parse(params[:steps]).first['node'],
-      ids:     JSON.parse(params[:steps]).map{|e| e['node']}
+      ids:     JSON.parse(params[:steps]).map{|e| e['node']},
+      arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
+      left_on:    JSON.parse(params[:steps]).last["left_on"]
       )
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
@@ -50,11 +62,12 @@ class EventsController < ApplicationController
       flow:    params[:flow]   ,
       step:    params[:step]   ,
       values:  JSON.parse(params[:values]),
-      steps:   JSON.parse(params[:steps]),
+      steps:   steps,
       primary: JSON.parse(params[:steps]).first['node'],
-      ids:     JSON.parse(params[:steps]).map{|e| e['node']}
+      ids:     JSON.parse(params[:steps]).map{|e| e['node']},
+      arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
+      left_on:    JSON.parse(params[:steps]).last["left_on"]
       )
-
 
 
     # JSON.parse(params[:steps]).each do |s|
