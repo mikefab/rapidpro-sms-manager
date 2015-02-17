@@ -3,14 +3,14 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
-  resources :records
+  #resources :records
 
   # # resources :responses
 
   # # resources :nodes
 
-  resources :events
-  resources :completions
+  #resources :events
+  #resources :completions
 
   namespace :api do
     resources :surveys, defaults: { format: :json }
