@@ -1,17 +1,21 @@
-%div.container{"ng-controller" => "surveyCtrl"}
+%div.container-fluid{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-10.pre-scrollable{style: 'max-height:1000px;'}
+    .col-md-3.pre-scrollable{style: 'max-height:1000px;'}
       %p
         %ul{'ng-repeat' => 'survey in surveys'}
-          %li{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
+          %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
             {{survey.question}}
-    .col-md-2
+            %br
+            %br
+            %p{style: 'font-size:11px;'}
+              First sms: {{survey.first_date}}
+              %br
+              Last sms: {{survey.last_date}}
+              %br
+              Surveys completed: {{survey.total_instances}}
 
 
-  .row
-    .col-md-12
-
-
+    .col-md-9
       %p
         %diagram{nodes: 'nodes'}
           %div
@@ -25,3 +29,7 @@
           Label: {{label}}
         %p{'ng-show' => '!!hits'}
           Hits: {{hits}}
+          {{responses}}
+
+        %p{'ng-show' => '!!responses'}
+          Responses: {{responses}}

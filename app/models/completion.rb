@@ -8,6 +8,8 @@ class Completion
   field :values,  type: Array
   field :primary, type: String
   field :ids,     type: Array
+  field :arrived_on, type: DateTime
+  field :left_on,    type: DateTime
   # field :steps,   type: Array
   
   embeds_many :steps
@@ -17,15 +19,39 @@ class Completion
   end
 
 
+  def self.total_instances(id)
+    Completion.where(primary: id).all.count
+  end
+
+
+
+
   def self.diagram(node)
-    node2qustion = {}
+    node2question = {}
+    node2response = {}
     node2label   = {}
     hits         = {}
 
     Completion.all.group_by(&:ids).each do |arry|
       arry[1].each do |completion| 
         completion.steps.each do |s|
-          node2qustion[s.node] = s.text if !!s.text and s.type == "A"
+
+          if !!s.text
+            if s.type == "A"
+              node2question[s.node] = s.text
+
+            else # Type is R. Maintain record of responses with frequency 
+              if !node2response[s.node]
+                node2response[s.node] = {}
+              end
+
+              if !node2response[s.node][s.text]
+                node2response[s.node][s.text] = 1
+              else
+                node2response[s.node][s.text] = node2response[s.node][s.text] + 1
+              end
+            end
+          end
         end
 
         completion.values.each do |v|
@@ -49,12 +75,12 @@ class Completion
       ar.each_with_index do |e, i|
         unless seen[e]
           seen[e] = 1
-          nodes << {name: e, id: e, text: node2qustion[e], label: node2label[e], hits: hits[e]}
+          nodes << {name: e, id: e, text: node2question[e], label: node2label[e], hits: hits[e], responses: node2response[e]}
         end
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
       end
     end
-
+    puts "#{nodes.count}  **** #{nodes} !!!!"
     return {nodes: nodes, links: links}
   end
 

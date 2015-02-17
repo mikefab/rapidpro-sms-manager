@@ -142,6 +142,7 @@ angular.module('myApp.directives', [])
             label: node.label
             hits:  node.hits
             message: node.text
+            responses: node.responses
             text:
               text: (node.label || ( if node.text then node.text[0..6] + "...") || "") + " " + node.hits
               'font-size': letterSize
@@ -168,11 +169,12 @@ angular.module('myApp.directives', [])
 
       paper.on "cell:mouseover", (cellView, evt, x, y) ->
         $scope.$apply("")
+
         $scope.$parent.message = cellView.model.attributes.attrs.message
         $scope.$parent.label   = cellView.model.attributes.attrs.label
         $scope.$parent.hits    = cellView.model.attributes.attrs.hits
+        $scope.$parent.responses = cellView.model.attributes.attrs.responses
         $scope.$parent.instructions = false
-        console.log $scope.$parent.message
 
       layout = (nodes) ->
         try
