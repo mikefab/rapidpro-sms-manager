@@ -75,6 +75,7 @@ class Completion
       ar.each_with_index do |e, i|
         unless seen[e]
           seen[e] = 1
+          node2response[e] = node2response[e].sort_by {|key, value| value}.reverse if node2response[e]
           nodes << {name: e, id: e, text: node2question[e], label: node2label[e], hits: hits[e], responses: node2response[e]}
         end
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
@@ -84,17 +85,17 @@ class Completion
   end
 
 
-  def self.flare(node)
-    arrays = Completion.where(primary: '49e02161-7fe5-4481-aaac-531ecd1c3e4f').map(&:ids).uniq
-    first  = []
-    arrays.each do |ar|
-      ar.each_with_index do |e, i|
-        path = []
-        ar[0..(i-1)].each do |ee|
-          path << ee
-        end
-        first << {name: e, path: path}
-      end
-    end
-  end
+  # def self.flare(node)
+  #   arrays = Completion.where(primary: '49e02161-7fe5-4481-aaac-531ecd1c3e4f').map(&:ids).uniq
+  #   first  = []
+  #   arrays.each do |ar|
+  #     ar.each_with_index do |e, i|
+  #       path = []
+  #       ar[0..(i-1)].each do |ee|
+  #         path << ee
+  #       end
+  #       first << {name: e, path: path}
+  #     end
+  #   end
+  # end
 end
