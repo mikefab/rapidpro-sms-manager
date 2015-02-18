@@ -12,8 +12,9 @@ angular.module('myApp.controllers', [])
       $scope.get_surveys  = () ->
         SurveyService.getList().then (surveys) ->
           $scope.surveys  = surveys
-          $scope.selected = surveys[0].node
-          $scope.get_diagram surveys[0].node
+          if !!surveys[0]
+            $scope.selected = surveys[0].node
+            $scope.get_diagram surveys[0].node
 
       $scope.get_diagram = (node) ->
         $scope.selected  = node
