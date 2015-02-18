@@ -29,7 +29,9 @@
           Label: {{label}}
         %p{'ng-show' => '!!hits'}
           Hits: {{hits}}
-          {{responses}}
 
         %p{'ng-show' => '!!responses'}
-          Responses: {{responses}}
+          Responses:
+          %ul{'ng-repeat' => 'response in responses'}
+            %li
+              {{response[0]}} {{response[1]}}
