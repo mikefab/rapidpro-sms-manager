@@ -1,6 +1,6 @@
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-3.pre-scrollable{style: 'max-height:5000px;'}
+    .col-md-3.pre-scrollable{style: 'max-height:500px;'}
       %p
         %ul{'ng-repeat' => 'survey in surveys'}
           %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
@@ -13,6 +13,8 @@
               Last sms: {{survey.last_date}}
               %br
               Surveys completed: {{survey.total_instances}}
+
+
 
 
     .col-md-9
