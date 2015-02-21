@@ -23,9 +23,6 @@ class Completion
     Completion.where(primary: id).all.count
   end
 
-
-
-
   def self.diagram(node)
     node2question = {}
     node2response = {}
@@ -37,9 +34,9 @@ class Completion
         completion.steps.each do |s|
 
           if !!s.text
+            s.text.rstrip!
             if s.type == "A"
               node2question[s.node] = s.text
-
             else # Type is R. Maintain record of responses with frequency 
               if !node2response[s.node]
                 node2response[s.node] = {}

@@ -1,3 +1,5 @@
+require 'digest'
+
 class EventsController < ApplicationController
   respond_to :json
   before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -33,9 +35,10 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
+    params[:text].chomp!
     #@event = Event.new(event_params)
     @event  = Event.new(entry: params)
-    phone   = "#{params[:phone]}#{params[:run]}"
+    phone   = Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}"
     steps   = JSON.parse(params[:steps])
 
     # I think that text of last step should not be blank
@@ -62,15 +65,15 @@ class EventsController < ApplicationController
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
     @completion.update!(
-      run:     params[:run]    ,
-      phone:   phone  ,
-      text:    params[:text]   ,
-      flow:    params[:flow]   ,
-      step:    params[:step]   ,
-      values:  JSON.parse(params[:values]),
-      steps:   steps,
-      primary: JSON.parse(params[:steps]).first['node'],
-      ids:     JSON.parse(params[:steps]).map{|e| e['node']},
+      run:        params[:run]    ,
+      phone:      phone  ,
+      text:       params[:text]   ,
+      flow:       params[:flow]   ,
+      step:       params[:step]   ,
+      values:     JSON.parse(params[:values]),
+      steps:      steps,
+      primary:    JSON.parse(params[:steps]).first['node'],
+      ids:        JSON.parse(params[:steps]).map{|e| e['node']},
       arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
       left_on:    JSON.parse(params[:steps]).last["left_on"]
       )

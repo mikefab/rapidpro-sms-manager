@@ -1,6 +1,6 @@
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-3.pre-scrollable{style: 'max-height:1000px;'}
+    .col-md-3.pre-scrollable{style: 'max-height:5000px;'}
       %p
         %ul{'ng-repeat' => 'survey in surveys'}
           %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
@@ -16,22 +16,22 @@
 
 
     .col-md-9
-      %p
+      %p.pre-scrollable{style: 'max-height:400px'}
         %diagram{nodes: 'nodes'}
           %div
 
-        %p{'ng-show' => 'instructions == true'}
-          %strong{style: 'font-size:24px'}
-            Mouse over the nodes for more information.
-        %p{'ng-show' => '!!message'}
-          Message: {{message}}
-        %p{'ng-show' => '!!label'}
-          Label: {{label}}
-        %p{'ng-show' => '!!hits'}
-          Hits: {{hits}}
+      %p{'ng-show' => 'instructions == true'}
+        %strong{style: 'font-size:24px'}
+          Mouse over the nodes for more information.
+      %p{'ng-show' => '!!message'}
+        Message: {{message}}
+      %p{'ng-show' => '!!label'}
+        Label: {{label}}
+      %p{'ng-show' => '!!hits'}
+        Hits: {{hits}}
 
-        %p{'ng-show' => '!!responses'}
-          Responses:
-          %ul{'ng-repeat' => 'response in responses'}
-            %li
-              {{response[0]}} {{response[1]}}
+      %p{'ng-show' => '!!responses'}
+        Responses:
+        %ul{'ng-repeat' => 'response in responses'}
+          %li
+            {{response[0]}} {{response[1]}}
