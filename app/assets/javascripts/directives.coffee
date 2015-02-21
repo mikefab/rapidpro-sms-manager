@@ -161,8 +161,8 @@ angular.module('myApp.directives', [])
       graph = new (joint.dia.Graph)
       paper = new (joint.dia.Paper)(
         el: $el[0]
-        width: 1900
-        height: 400
+        width: 2900
+        height: 500
         gridSize: 1
         model: graph)
       # Just give the viewport a little padding.
