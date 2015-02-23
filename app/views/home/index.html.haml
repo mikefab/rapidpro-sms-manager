@@ -16,15 +16,22 @@
 
 
 
-
     .col-md-9
       %p.pre-scrollable{style: 'max-height:400px'}
         %diagram{nodes: 'nodes'}
           %div
 
-      %p{'ng-show' => 'instructions == true'}
-        %strong{style: 'font-size:24px'}
-          Mouse over the nodes for more information.
+      %div{'ng-switch' => '', :on => 'surveys.length > 0'}
+        %p{'ng-show' => 'instructions == true', 'ng-switch-when' => 'true'}
+          %strong.instructions
+            Mouse over the nodes for more information.
+  
+        %p{"ng-switch-when" => "false"} 
+          %strong.instructions
+            There are no surveys yet
+
+
+
       %p{'ng-show' => '!!message'}
         Message: {{message}}
       %p{'ng-show' => '!!label'}
