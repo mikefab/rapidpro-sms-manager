@@ -21,7 +21,7 @@
         %diagram{nodes: 'nodes'}
           %div
 
-      %div{'ng-switch' => '', :on => 'surveys.length > 0'}
+      %div{'ng-switch' => '', :on => 'surveys.length > 0', 'ng-show' => 'surveys'}
         %p{'ng-show' => 'instructions == true', 'ng-switch-when' => 'true'}
           %strong.instructions
             Mouse over the nodes for more information.
