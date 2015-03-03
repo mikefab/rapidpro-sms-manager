@@ -124,7 +124,7 @@ angular.module('myApp.directives', [])
           attrs: '.marker-target': d: 'M 4 0 L 0 2 L 4 4 z'
           labels: [ {
             position: 0.5
-            attrs: text: text: 'on'
+            attrs: text: text: ''
           } ]
           connector: name: 'smooth')
         #}
@@ -194,8 +194,8 @@ angular.module('myApp.directives', [])
         joint.layout.DirectedGraph.layout graph,
           setLinkVertices: false
           rankDir: 'lr'
-          nodeSep: 100
-          rankSep: 100
+          nodeSep: 80
+          rankSep: 80
         return
 
       V(paper.viewport).translate 20, 20
