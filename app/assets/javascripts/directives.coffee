@@ -194,8 +194,8 @@ angular.module('myApp.directives', [])
         joint.layout.DirectedGraph.layout graph,
           setLinkVertices: false
           rankDir: 'lr'
-          nodeSep: 150
-          rankSep: 150
+          nodeSep: 100
+          rankSep: 100
         return
 
       V(paper.viewport).translate 20, 20
