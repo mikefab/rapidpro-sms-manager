@@ -196,7 +196,7 @@ angular.module('myApp.directives', [])
       graph = new (joint.dia.Graph)
       paper = new (joint.dia.Paper)(
         el: $el[0]
-        width: 900
+        width: 1500
         height: 2900
         gridSize: 1
         model: graph)
