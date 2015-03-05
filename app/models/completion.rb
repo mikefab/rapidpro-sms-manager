@@ -52,6 +52,7 @@ class Completion
                 resp.sub!(/^['"]/,'')
                 resp.sub!(/['"]$/,'')
               end
+              resp = resp.strip.capitalize
 
               if !node2response[s.node][resp]
                 node2response[s.node][resp] = 1
