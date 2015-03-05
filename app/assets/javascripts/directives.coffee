@@ -152,7 +152,7 @@ angular.module('myApp.directives', [])
         if !!node.responses
           text = text + "Responses:\n\n"
           _.each node.responses, (r) ->
-            text = text + r + "\n\n"
+            text = text + break_lines(r[0]) + ", " + r[1] + "\n\n"
 
         maxLineLength = _.max(text.split('\n'), (l) ->
           l.length
@@ -248,7 +248,7 @@ angular.module('myApp.directives', [])
         root = get_root(source_h, target_h)
 
         flare = {name: root, children: [_.uniq source_h[root]]}
-        console.log flare
+        # console.log flare
         # _.each _.keys(source_h), (k) ->
         #   _.each _.keys(source_h), (k2) ->
         #     #console.log $.inArray(k, source_h[k2])        console.log root
