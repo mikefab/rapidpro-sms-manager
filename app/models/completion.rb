@@ -23,6 +23,11 @@ class Completion
     Completion.where(primary: id).all.count
   end
 
+
+  def self.flare(diagram)
+
+  end
+
   def self.diagram(node)
     node2question = {}
     node2response = {}
@@ -41,11 +46,15 @@ class Completion
               if !node2response[s.node]
                 node2response[s.node] = {}
               end
+              resp = s.text.downcase
+              if resp.split.size == 1
+                resp.sub!(/[!.?]$/,'')
+              end
 
-              if !node2response[s.node][s.text]
-                node2response[s.node][s.text] = 1
+              if !node2response[s.node][resp]
+                node2response[s.node][resp] = 1
               else
-                node2response[s.node][s.text] = node2response[s.node][s.text] + 1
+                node2response[s.node][resp] = node2response[s.node][resp] + 1
               end
             end
           end
@@ -65,9 +74,11 @@ class Completion
 
 
     arrays = Completion.where(primary: node).map(&:ids).uniq
+    puts "#{arrays} !!!!!!"
     seen   = {}    
     nodes  = []
-    links  = []    
+    links  = []
+
     arrays.each do |ar|
       ar.each_with_index do |e, i|
         unless seen[e]
@@ -76,8 +87,10 @@ class Completion
           nodes << {name: e, id: e, text: node2question[e], label: node2label[e], hits: hits[e], responses: node2response[e]}
         end
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
+        #links << [{v: e, f:"#{e} _ #{node2question[e]}<div style=\"color:red; font-style:italic\">#{node2label[e]} #{node2response[e]}</div>"}, ar[i-1] || "", 'The President'] unless (i+1) == ar.length
       end
     end
+    puts links
     return {nodes: nodes, links: links}
   end
 
