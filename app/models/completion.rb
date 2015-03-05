@@ -49,6 +49,8 @@ class Completion
               resp = s.text.downcase.strip
               if resp.split.size == 1
                 resp.sub!(/[!.?]$/,'')
+                resp.sub!(/^['"]/,'')
+                resp.sub!(/['"]$/,'')
               end
 
               if !node2response[s.node][resp]
