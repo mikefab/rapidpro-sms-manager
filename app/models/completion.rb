@@ -46,7 +46,7 @@ class Completion
               if !node2response[s.node]
                 node2response[s.node] = {}
               end
-              resp = s.text.downcase.strip.capitalize
+              resp = s.text.strip.downcase.capitalize
               if resp.split.size == 1
                 resp.sub!(/[!.?]$/,'')
                 resp.sub!(/^['"]/,'')
