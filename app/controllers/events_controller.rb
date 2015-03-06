@@ -60,7 +60,8 @@ class EventsController < ApplicationController
       primary: JSON.parse(params[:steps]).first['node'],
       ids:     JSON.parse(params[:steps]).map{|e| e['node']},
       arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
-      left_on:    JSON.parse(params[:steps]).last["left_on"]
+      left_on:    JSON.parse(params[:steps]).last["left_on"],
+      created_at: DateTime.now
       )
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
@@ -75,7 +76,8 @@ class EventsController < ApplicationController
       primary:    JSON.parse(params[:steps]).first['node'],
       ids:        JSON.parse(params[:steps]).map{|e| e['node']},
       arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
-      left_on:    JSON.parse(params[:steps]).last["left_on"]
+      left_on:    JSON.parse(params[:steps]).last["left_on"],
+      created_at: DateTime.now
       )
 
 

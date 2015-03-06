@@ -1,15 +1,16 @@
 class Completion
   include Mongoid::Document
-  field :run,     type: Integer
-  field :step,    type: String
-  field :phone,   type: String
-  field :text,    type: String
-  field :flow,    type: Integer
-  field :values,  type: Array
-  field :primary, type: String
-  field :ids,     type: Array
+  field :run,        type: Integer
+  field :step,       type: String
+  field :phone,      type: String
+  field :text,       type: String
+  field :flow,       type: Integer
+  field :values,     type: Array
+  field :primary,    type: String
+  field :ids,        type: Array
   field :arrived_on, type: DateTime
   field :left_on,    type: DateTime
+  field :created_at, type: DateTime  
   # field :steps,   type: Array
   
   embeds_many :steps
