@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   def create
 
     params[:text].chomp!
-    #@event = Event.new(event_params)
     @event  = Event.new(entry: params)
     phone   = Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}"
     steps   = JSON.parse(params[:steps])
@@ -79,37 +78,6 @@ class EventsController < ApplicationController
       left_on:    JSON.parse(params[:steps]).last["left_on"],
       created_at: DateTime.now
       )
-
-
-    # JSON.parse(params[:steps]).each do |s|
-    #   unless !!Node.where(node: s['node']).first
-    #     @node = Node.create!(
-    #       node:       s['node']       ,
-    #       arrived_on: s['arrived_on'] ,
-    #       left_on:    s['left_on']    ,
-    #       text:       s['text']       ,
-    #       type:       s['type']       ,
-    #       value:      s['value']
-    #       )
-    #   end
-    # end
-
-
-    # JSON.parse(params[:values]).each do |v|
-    #   unless !!Response.where(phone: params[:phone], node: v['node']).first
-    #     @response = Response.create!(
-    #       category:   v['category']   ,
-    #       node:       v['node']       ,
-    #       time:       v['time']       ,
-    #       text:       v['text']       ,
-    #       rule_value: v['rule_value'] ,
-    #       value:      v['value']      ,
-    #       label:      v['label']      ,
-    #       phone:      params[:phone]
-    #     )
-    #   end
-    # end
-
 
     @record.save!
 

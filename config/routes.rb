@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # # resources :nodes
 
   resources :events
-  #resources :completions
+  resources :completions
 
   namespace :api do
     resources :surveys, defaults: { format: :json }
