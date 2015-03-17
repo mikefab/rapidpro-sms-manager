@@ -78,7 +78,6 @@ class Completion
 
 
     arrays = Completion.where(primary: node).map(&:ids).uniq
-    puts "#{arrays} !!!!!!"
     seen   = {}    
     nodes  = []
     links  = []
