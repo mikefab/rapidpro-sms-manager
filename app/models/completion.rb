@@ -10,7 +10,8 @@ class Completion
   field :ids,        type: Array
   field :arrived_on, type: DateTime
   field :left_on,    type: DateTime
-  field :created_at, type: DateTime  
+  field :created_at, type: DateTime
+  field :ip,         type: String  
   # field :steps,   type: Array
   
   embeds_many :steps

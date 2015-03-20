@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def create
 
     params[:text].chomp!
-    @event  = Event.new(entry: params)
+    @event  = Event.new(entry: params, ip: request.remote_ip)
     phone   = Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}"
     steps   = JSON.parse(params[:steps])
 
@@ -60,7 +60,8 @@ class EventsController < ApplicationController
       ids:     JSON.parse(params[:steps]).map{|e| e['node']},
       arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
       left_on:    JSON.parse(params[:steps]).last["left_on"],
-      created_at: DateTime.now
+      created_at: DateTime.now,
+      ip: request.remote_ip
       )
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
@@ -76,7 +77,8 @@ class EventsController < ApplicationController
       ids:        JSON.parse(params[:steps]).map{|e| e['node']},
       arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
       left_on:    JSON.parse(params[:steps]).last["left_on"],
-      created_at: DateTime.now
+      created_at: DateTime.now,
+      ip: request.remote_ip
       )
 
     @record.save!
