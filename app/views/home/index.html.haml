@@ -5,16 +5,18 @@
     %div
       / %div{style: 'font-size:18px;'}
       /   NGOs frequently send out surveys to staff and the general public with sms servers like FrontLine SMS and Rapidpro. This page visualizes these surveys via webhooks.
-      %p
-        %br
-        %span{'ng-show' => '!!surveys'}
-          Click a Survey below for a response summary.
   .col-md-2
 
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
   %br
   .row
     .col-md-3.pre-scrollable{style: 'max-height:5000px;'}
+      %p
+        %br
+        %strong{'ng-show' => 'surveys.length>0'}
+          Click a Survey for a response summary.
+
+
       %p
         %ul{'ng-repeat' => 'survey in surveys'}
           %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
