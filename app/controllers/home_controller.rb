@@ -5,4 +5,10 @@ class HomeController < ApplicationController
       @primary_nodes[e] = Record.primary_node_text(e)
     end
   end
+
+
+  def rumors
+
+  end
+
 end

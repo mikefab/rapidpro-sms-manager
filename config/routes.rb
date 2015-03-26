@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'home/index'
+  get 'rumors'  => 'home#rumors'
 
   #resources :records
 
@@ -13,8 +14,10 @@ Rails.application.routes.draw do
   resources :completions
 
   namespace :api do
-    resources :surveys, defaults: { format: :json }
     resources :diagrams, defaults: { format: :json }
+    resources :rumors,   defaults: { format: :json }
+    resources :statuses, defaults: { format: :json }
+    resources :surveys,  defaults: { format: :json }
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

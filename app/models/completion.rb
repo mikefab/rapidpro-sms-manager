@@ -12,6 +12,8 @@ class Completion
   field :left_on,    type: DateTime
   field :created_at, type: DateTime
   field :ip,         type: String  
+  field :status,     type: String
+  field :urgency,    type: String
   # field :steps,   type: Array
   
   embeds_many :steps

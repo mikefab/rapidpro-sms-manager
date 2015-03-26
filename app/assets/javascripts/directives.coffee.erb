@@ -1,5 +1,22 @@
 angular.module('myApp.directives', [])
 
+  .directive 'rumor', (RumorService) ->
+    restrict: 'E'
+    templateUrl: "<%= asset_path 'rumor.html' %>"
+    scope:
+      rumor:    '=',
+      statuses: '='
+    link: ($scope, $el, $attrs) ->
+
+
+      $scope.selected_status = _.findWhere $scope.statuses, name: $scope.rumor.status || $scope.statuses[1]
+
+      $scope.update_status = () ->
+        $scope.rumor.status = $scope.selected_status.name
+        $scope.rumor.put()
+
+
+
   .directive 'diagram', () ->
     restrict: 'E'
     scope:

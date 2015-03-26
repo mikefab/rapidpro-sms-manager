@@ -1,4 +1,29 @@
 angular.module('myApp.controllers', [])
+
+  .controller 'rumorCtrl', [
+    '$scope'
+    'RumorService'
+    'StatusService'
+    ($scope, RumorService, StatusService) ->
+
+      $scope.get_statuses = () ->
+        StatusService.getList().then (statuses) ->            
+          $scope.statuses = statuses
+
+
+          $scope.groups = _.map statuses, (obj) ->
+            obj.name
+
+      $scope.get_rumors  = () ->
+        RumorService.getList().then (rumors) ->
+          $scope.rumors  = rumors
+
+
+      $scope.get_statuses().then () ->
+        $scope.get_rumors()
+
+  ]
+
   .controller 'surveyCtrl', [
     '$scope'
     '$http'
