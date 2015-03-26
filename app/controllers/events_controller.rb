@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 
     params[:text].chomp!
     @event  = Event.new(entry: params, ip: request.remote_ip)
-    phone   = Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}"
+    phone   = params[:phone] #Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}"
     steps   = JSON.parse(params[:steps])
 
     # I think that text of last step should not be blank
