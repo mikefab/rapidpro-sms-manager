@@ -20,6 +20,23 @@ class Api::StatusesController < ApplicationController
         name: 'debunked'
       }
     ]
-    render json: statuses
+
+    urgencies = [
+      {
+        id: 'low',
+        name: 'low'
+      },
+      {
+        id: 'medium',
+        name: 'medium'
+      },
+      {
+        id: 'high',
+        name: 'high'
+      }
+
+    ]
+
+    render json: [statuses, urgencies]
   end
 end

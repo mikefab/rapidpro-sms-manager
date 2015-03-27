@@ -4,8 +4,6 @@ class Api::RumorsController < ApplicationController
   respond_to :json
 
   def index
-
-
     # Track.create(ip: request.remote_ip, params: params)
     @completions = []
     Record.all.order_by(:arrived_on => 'desc').group_by{|e| e.primary}.keys.each do |e|
@@ -16,7 +14,7 @@ class Api::RumorsController < ApplicationController
             text:       c.text,
             last_date:  c.created_at,
             status:     c.status  || 'new',
-            urgency:    c.urgency || 'none'
+            urgency:    c.urgency || 'low'
           }
         end
       end

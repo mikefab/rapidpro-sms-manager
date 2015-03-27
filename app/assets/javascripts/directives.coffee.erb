@@ -4,15 +4,26 @@ angular.module('myApp.directives', [])
     restrict: 'E'
     templateUrl: "<%= asset_path 'rumor.html' %>"
     scope:
-      rumor:    '=',
-      statuses: '='
+      rumor:     '=',
+      statuses:  '=',
+      urgencies: '=',
     link: ($scope, $el, $attrs) ->
 
+      best_option = (name, options) ->
+        if (_.findWhere options, name: name)
+              _.findWhere options, name: name
+            else 
+              options[0]
 
-      $scope.selected_status = _.findWhere $scope.statuses, name: $scope.rumor.status || $scope.statuses[1]
+      $scope.selected_status  = best_option($scope.rumor.status, $scope.statuses)
+      $scope.selected_urgency = best_option($scope.rumor.urgency, $scope.urgencies)
 
-      $scope.update_status = () ->
+      $scope.update_status  = () ->
         $scope.rumor.status = $scope.selected_status.name
+        $scope.rumor.put()
+
+      $scope.update_urgency  = () ->
+        $scope.rumor.urgency = $scope.selected_urgency.name
         $scope.rumor.put()
 
 
