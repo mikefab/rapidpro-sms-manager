@@ -9,7 +9,7 @@
           %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'new'}" }
             %li
               %span
-                %rumor{rumor: 'rumor', statuses: 'statuses'} 
+                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
 
     .col-md-3
       .row
@@ -20,7 +20,7 @@
           %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'investigation'}" }
             %li
               %span
-                %rumor{rumor: 'rumor', statuses: 'statuses'} 
+                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
 
     .col-md-3
       .row
@@ -31,7 +31,7 @@
           %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'Verified'}" }
             %li
               %span
-                %rumor{rumor: 'rumor', statuses: 'statuses'} 
+                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
 
     .col-md-3
       .row
@@ -42,4 +42,4 @@
           %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'Debunked'}" }
             %li
               %span
-                %rumor{rumor: 'rumor', statuses: 'statuses'} 
+                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 

@@ -1,6 +1,16 @@
-%div.capsule{'ng-class' => "{urgency_low: selected_urgency.name == 'low', urgency_medium: selected_urgency.name == 'medium', urgency_high: selected_urgency.name == 'high'}"}
+%div.capsule{'ng-class' => "{urgency_low: rumor.urgency == 'low', urgency_medium: rumor.urgency == 'medium', urgency_high: rumor.urgency == 'high'}"}
   {{rumor.text}}
   %br
-  %select{'ng-change' => 'update_urgency()', 'ng-model' => 'selected_urgency', 'ng-options' => 'urgency as urgency.name for urgency in urgencies'}
-  %br
+  %div
+    %span{'ng-repeat' => 'urgency in urgencies'}
+      %span.urgency_box{'ng-click' => 'update_urgency(urgency.name)', 'ng-class' => 'urgency.name'}
+        &nbsp;&nbsp;
+
+    / %span.urgency_box.low{'ng-click'    => "update_urgency()"}
+    /   &nbsp;&nbsp;
+    / %span.urgency_box.medium{'ng-click' => "update_urgency()"}
+    /   &nbsp;&nbsp;
+    / %span.urgency_box.high{'ng-click'   => "update_urgency()"}
+    /   &nbsp;&nbsp;
+  / %select{'ng-change' => 'update_urgency()', 'ng-model' => 'selected_urgency', 'ng-options' => 'urgency as urgency.name for urgency in urgencies'}
   %select{'ng-change' => 'update_status()',  'ng-model' => 'selected_status',  'ng-options' => 'status as status.name for status in statuses'}
