@@ -15,15 +15,15 @@ angular.module('myApp.directives', [])
             else 
               options[0]
 
-      $scope.selected_status  = best_option($scope.rumor.status, $scope.statuses)
+      $scope.selected_status  = best_option($scope.rumor.status,  $scope.statuses)
       $scope.selected_urgency = best_option($scope.rumor.urgency, $scope.urgencies)
 
       $scope.update_status  = () ->
         $scope.rumor.status = $scope.selected_status.name
         $scope.rumor.put()
 
-      $scope.update_urgency  = () ->
-        $scope.rumor.urgency = $scope.selected_urgency.name
+      $scope.update_urgency  = (urgency_level) ->
+        $scope.rumor.urgency = urgency_level
         $scope.rumor.put()
 
 
