@@ -8,8 +8,8 @@ class Api::StatusesController < ApplicationController
         name: 'new'
       },
       {
-        id: 'investigation',
-        name: 'investigation'
+        id: 'investigating',
+        name: 'investigating'
       },
       {
         id: 'verified',
