@@ -12,3 +12,21 @@
 .instructions{
   font-size:24px
 }
+
+.capsule{
+  border-width: 5px;
+  border-color: black;
+  padding: 10px;
+}
+
+.urgency_high{
+  color: red;
+}
+
+.urgency_medium{
+  color: blue;
+}
+
+.urgency_low{
+  color: black;
+}

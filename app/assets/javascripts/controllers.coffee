@@ -8,8 +8,8 @@ angular.module('myApp.controllers', [])
 
       $scope.get_statuses = () ->
         StatusService.getList().then (statuses) ->            
-          $scope.statuses = statuses
-
+          $scope.statuses  = statuses[[0]]
+          $scope.urgencies = statuses[[1]]
 
           $scope.groups = _.map statuses, (obj) ->
             obj.name
