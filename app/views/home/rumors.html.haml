@@ -1,45 +1,17 @@
 %div.container-fluid{'ng-controller' => 'rumorCtrl'}
   .row
-    .col-md-3
-      .row
-        .col-md-12
-          New
-      .row
-        .col-md-12
-          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'new'}" }
-            %li
-              %span
-                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
+    .col-md-3{'ng-repeat' => 'status in statuses'}
+      %div
+        .row
+          .col-md-12
+            %strong
+              {{status.name}}
+        %br
+        .row
+          .col-md-12
+            %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name}" }
+              %li
+                %span
+                  %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
 
-    .col-md-3
-      .row
-        .col-md-12
-          Investigating
-      .row
-        .col-md-12
-          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'Investigating'}" }
-            %li
-              %span
-                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
 
-    .col-md-3
-      .row
-        .col-md-12
-          Verified
-      .row
-        .col-md-12
-          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'Verified'}" }
-            %li
-              %span
-                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
-
-    .col-md-3
-      .row
-        .col-md-12
-          Debunked
-      .row
-        .col-md-12
-          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: 'Debunked'}" }
-            %li
-              %span
-                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 

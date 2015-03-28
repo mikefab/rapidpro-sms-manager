@@ -4,20 +4,24 @@ class Api::StatusesController < ApplicationController
   def index
     statuses = [
       {
-        id: 'new',
-        name: 'new'
+        id:     'new',
+        name:   'new',
+        symbol: 'n'
       },
       {
-        id: 'investigating',
-        name: 'investigating'
+        id:     'investigating',
+        name:   'investigating',
+        symbol: 'i'
       },
       {
-        id: 'verified',
-        name: 'verified'
+        id:     'verified',
+        name:   'verified',
+        symbol: 'v'
       },
       {
-        id: 'debunked',
-        name: 'debunked'
+        id:     'debunked',
+        name:   'debunked',
+        symbol: 'd'
       }
     ]
 
