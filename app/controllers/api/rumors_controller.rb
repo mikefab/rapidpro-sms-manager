@@ -6,18 +6,14 @@ class Api::RumorsController < ApplicationController
   def index
     # Track.create(ip: request.remote_ip, params: params)
     @completions = []
-    Record.all.order_by(:arrived_on => 'desc').group_by{|e| e.primary}.keys.each do |e|
-      if Record.primary_node_text(e).match(/DeySay/i)
-        Completion.where(primary: e).order_by(:arrived_on => 'desc').each do |c|
-          @completions << {
-            id:         c.id.to_s,
-            text:       c.text,
-            last_date:  c.created_at,
-            status:     c.status  || 'new',
-            urgency:    c.urgency || 'low'
-          }
-        end
-      end
+    Completion.all.select{|c| c.steps[0].text.match(/deysay/i)}.each do |c|
+      @completions << {
+        id:         c.id.to_s,
+        text:       c.text,
+        last_date:  c.created_at,
+        status:     c.status  || 'new',
+        urgency:    c.urgency || 'low'
+      }
     end
     render json: @completions
   end
