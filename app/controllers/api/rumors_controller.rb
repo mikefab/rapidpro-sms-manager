@@ -6,7 +6,7 @@ class Api::RumorsController < ApplicationController
   def index
     # Track.create(ip: request.remote_ip, params: params)
     @completions = []
-    Completion.all.select{|c| c.steps[0].text.match(/deysay/i)}.each do |c|
+    Completion.all.order_by(:arrived_on => 'asc').select{|c| c.steps[0].text.match(/deysay/i)}.each do |c|
       @completions << {
         id:         c.id.to_s,
         text:       c.text,
