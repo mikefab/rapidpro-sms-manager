@@ -9,6 +9,8 @@ angular.module('myApp.directives', [])
       urgencies: '=',
     link: ($scope, $el, $attrs) ->
 
+      $scope.display_options = false
+
       best_option = (name, options) ->
         if (_.findWhere options, name: name)
               _.findWhere options, name: name
@@ -18,14 +20,17 @@ angular.module('myApp.directives', [])
       $scope.selected_status  = best_option($scope.rumor.status,  $scope.statuses)
       $scope.selected_urgency = best_option($scope.rumor.urgency, $scope.urgencies)
 
-      $scope.update_status  = () ->
-        $scope.rumor.status = $scope.selected_status.name
+      $scope.update_status  = (name) ->
+        $scope.rumor.status = name
         $scope.rumor.put()
 
       $scope.update_urgency  = (urgency_level) ->
         $scope.rumor.urgency = urgency_level
         $scope.rumor.put()
 
+
+      $scope.show_options = () ->
+        $scope.display_options  = !$scope.display_options
 
 
   .directive 'diagram', () ->

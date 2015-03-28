@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require angular/angular
 //= require angular-bootstrap
 //= require restangular
+//= require angular-dragdrop
 //= require lodash
 //= require_tree .
