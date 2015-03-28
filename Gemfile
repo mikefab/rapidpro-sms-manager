@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem "twitter-bootstrap-rails"
 gem 'jquery-ui-rails'
 gem 'pry'
 gem 'hashie'
