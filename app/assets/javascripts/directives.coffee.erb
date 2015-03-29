@@ -1,55 +1,60 @@
 angular.module('myApp.directives', [])
 
-  .directive 'rumor', ($modal, $log, RumorService) ->
-    restrict: 'E'
-    templateUrl: "<%= asset_path 'rumor.html' %>"
-    scope:
-      rumor:     '=',
-      statuses:  '=',
-      urgencies: '=',
-    link: ($scope, $el, $attrs) ->
+  .directive 'rumor', [
+    '$modal'
+    '$log'
+    'RumorService'
 
-      $scope.display_options = false
+    ($modal, $log, RumorService) ->
+      restrict: 'E'
+      templateUrl: "<%= asset_path 'rumor.html' %>"
+      scope:
+        rumor:     '=',
+        statuses:  '=',
+        urgencies: '=',
+      link: ($scope, $el, $attrs) ->
 
-      best_option = (name, options) ->
-        if (_.findWhere options, name: name)
-              _.findWhere options, name: name
-            else 
-              options[0]
+        $scope.display_options = false
 
-      $scope.selected_status  = best_option($scope.rumor.status,  $scope.statuses)
-      $scope.selected_urgency = best_option($scope.rumor.urgency, $scope.urgencies)
+        best_option = (name, options) ->
+          if (_.findWhere options, name: name)
+                _.findWhere options, name: name
+              else 
+                options[0]
 
-      $scope.update_status  = (name) ->
-        $scope.rumor.status = name
-        $scope.rumor.put()
+        $scope.selected_status  = best_option($scope.rumor.status,  $scope.statuses)
+        $scope.selected_urgency = best_option($scope.rumor.urgency, $scope.urgencies)
 
-      $scope.update_urgency  = (urgency_level) ->
-        $scope.rumor.urgency = urgency_level
-        $scope.rumor.put()
+        $scope.update_status  = (name) ->
+          $scope.rumor.status = name
+          $scope.rumor.put()
 
-      $scope.show_options = () ->
-        $scope.display_options  = !$scope.display_options
+        $scope.update_urgency  = (urgency_level) ->
+          $scope.rumor.urgency = urgency_level
+          $scope.rumor.put()
 
-      $scope.delete = () ->
-        $scope.rumor.soft_delete = 1
-        $scope.rumor.status = 'deleted'
-        $scope.rumor.put()
+        $scope.show_options = () ->
+          $scope.display_options  = !$scope.display_options
 
-      $scope.open = (size) ->
-        modalInstance = $modal.open(
-          templateUrl: "<%= asset_path 'rumor_comment.html' %>"
-          controller: "ModalInstanceCtrl"
-          size: size
-          resolve:
-            rumor: ->
-              $scope.rumor
-        )
-        modalInstance.result.then ((selectedItem) ->
-          $scope.selected = selectedItem
-        ), ->
-          $log.info "Modal dismissed at: " + new Date()
+        $scope.delete = () ->
+          $scope.rumor.soft_delete = 1
+          $scope.rumor.status = 'deleted'
+          $scope.rumor.put()
 
+        $scope.open = (size) ->
+          modalInstance = $modal.open(
+            templateUrl: "<%= asset_path 'rumor_comment.html' %>"
+            controller: "ModalInstanceCtrl"
+            size: size
+            resolve:
+              rumor: ->
+                $scope.rumor
+          )
+          modalInstance.result.then ((selectedItem) ->
+            $scope.selected = selectedItem
+          ), ->
+            $log.info "Modal dismissed at: " + new Date()
+    ]
 
 
   .directive 'diagram', () ->
