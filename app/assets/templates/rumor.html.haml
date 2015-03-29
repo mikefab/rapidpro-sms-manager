@@ -7,15 +7,15 @@
         %span.urgency_box{title: 'urgency: {{urgency.name}}', 'ng-click' => 'update_urgency(urgency.name)', 'ng-class' => 'urgency.name'}
           &nbsp;&nbsp;
       &nbsp;
-      .glyphicon.glyphicon-remove
+      .glyphicon.glyphicon-trash.pointer{title: 'soft delete', 'ng-click' => 'delete()'}
       &nbsp;
       %span
         %i
-          %span{title: '{{status.name}}', style: 'cursor:pointer; color:black;', 'ng-repeat' => 'status in statuses', 'ng-click' => 'update_status(status.name)'}
+          %span.pointer{title: '{{status.name}}', style: 'color:black;', 'ng-repeat' => 'status in statuses', 'ng-click' => 'update_status(status.name)'}
             {{status.symbol}}
 
 
       &nbsp;
-      .glyphicon.glyphicon-comment
-      &nbsp;
-      .glyphicon.glyphicon-earphone
+      .glyphicon.glyphicon-comment.pointer{'ng-click' => "open('lg')"}
+      / &nbsp;
+      / .glyphicon.glyphicon-earphone

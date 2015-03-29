@@ -5,7 +5,7 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
+   Margin bottom by footer height 
   margin-bottom: 60px;
 }
 .footer {
@@ -22,11 +22,11 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-.container {
+.footer_container {
   width: auto;
   max-width: 680px;
   padding: 0 15px;
 }
-.container .text-muted {
+.footer_container .text-muted {
   margin: 20px 0;
 }

@@ -4,14 +4,13 @@
     %title Mercy3
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     %link{:href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     = yield
 
     %footer.footer
-      .container
+      .footer_container
         %p.text-muted
           Designed by
           %a{'href' => 'http://www.ilabliberia.org'} iLab Liberia
