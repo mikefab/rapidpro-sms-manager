@@ -16,6 +16,8 @@ class Api::RumorsController < ApplicationController
         urgency:     c.urgency || 'low',
         notes:       c.notes,
         phone:       c.phone,
+        date:        c.arrived_on,
+
         is_public:   c.is_public
       }
     end
