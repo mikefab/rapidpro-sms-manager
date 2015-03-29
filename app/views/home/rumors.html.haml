@@ -42,8 +42,8 @@
         %ul.nav.navbar-nav.navbar-right
           %form.navbar-form.navbar-left{:role => 'search', style: 'position:relative; right:100px;'}
             .form-group
-              %input.form-control{:placeholder => "Search", :type => "text"}
-            %button.btn.btn-default{:type => "submit"} Submit
+              %input.form-control{:placeholder => "Search", :type => "text", :disabled => ""}
+            %button.btn.btn-default{:type => "submit", :disabled => ""} Submit
           %li.active
             %a{:href => "#"} Open
           %li
