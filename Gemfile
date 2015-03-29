@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'jquery-ui-rails'
 gem 'pry'
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'hashie'
 gem 'bower-rails'
 gem 'haml-rails'
