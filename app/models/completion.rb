@@ -17,6 +17,7 @@ class Completion
   field :soft_delete,    type: Boolean
   field :notes,          type: String
   field :explanation,    type: String
+  field :is_public,      type: Boolean
   # field :steps,   type: Array
   
   embeds_many :steps

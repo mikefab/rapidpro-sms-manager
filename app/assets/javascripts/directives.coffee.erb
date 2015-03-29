@@ -4,8 +4,9 @@ angular.module('myApp.directives', [])
     '$modal'
     '$log'
     'RumorService'
+    'flash'
 
-    ($modal, $log, RumorService) ->
+    ($modal, $log, RumorService, flash) ->
       restrict: 'E'
       templateUrl: "<%= asset_path 'rumor.html' %>"
       scope:
@@ -40,6 +41,13 @@ angular.module('myApp.directives', [])
           $scope.rumor.soft_delete = 1
           $scope.rumor.status = 'deleted'
           $scope.rumor.put()
+
+        $scope.make_public = () ->
+          $scope.rumor.is_public = !$scope.rumor.is_public
+          $scope.rumor.put()#.then (response) ->
+            # if response
+            #   flash.success = 'Rumor updated!'
+
 
         $scope.open = (size) ->
           modalInstance = $modal.open(

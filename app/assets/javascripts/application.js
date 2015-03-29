@@ -16,6 +16,7 @@
 //= require angular/angular
 //= require angular-bootstrap
 //= require restangular
+//= require angular-flash
 //= require angular-dragdrop
 //= require lodash
 //= require_tree .

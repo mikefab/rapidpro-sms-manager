@@ -15,8 +15,8 @@ class Api::RumorsController < ApplicationController
         status:      c.status  || 'new',
         urgency:     c.urgency || 'low',
         notes:       c.notes,
-        phone:       c.phone
-
+        phone:       c.phone,
+        is_public:   c.is_public
       }
     end
     render json: @completions
@@ -45,6 +45,6 @@ class Api::RumorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def completion_params
-      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text, :soft_delete, :notes, :explanation)
+      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text, :soft_delete, :notes, :explanation, :is_public)
     end
 end
