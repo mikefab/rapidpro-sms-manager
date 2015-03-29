@@ -1,7 +1,8 @@
-angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directives',  'ui.bootstrap', 'restangular', 'ui.bootstrap', 'ngDragDrop'])
+angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directives',  'ui.bootstrap', 'restangular', 'ui.bootstrap', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ngDragDrop'])
   .config [
     'RestangularProvider'
+    'flashProvider'
     (RestangularProvider) ->
       RestangularProvider.setBaseUrl "/api"
-
+      #flashProvider.errorClassnames.push "alert-danger"
   ]

@@ -4,58 +4,22 @@ angular.module('myApp.controllers', [])
     '$scope'
     '$modalInstance'
     'rumor'
+    'flash'
 
-    ($scope, $modalInstance, rumor) ->
-      console.log rumor
+    ($scope, $modalInstance, rumor, flash) ->
       $scope.rumor = rumor
       $scope.ok = ->
         $modalInstance.close $scope.selected.item
 
       $scope.cancel = ->
         $modalInstance.dismiss "cancel"
+
+      $scope.update_rumor = () ->
+        $scope.rumor.put().then (response) ->
+          if response
+            flash.success = 'Rumor updated!'
+
     ]
-
-
-
-  .controller "oneCtrl", ($scope, $timeout) ->
-    $scope.list1 = []
-    $scope.list2 = []
-    $scope.list3 = []
-    $scope.list4 = []
-    $scope.list5 = [
-      title: "Item 1"
-      drag: true
-    ,
-      title: "Item 2"
-      drag: true
-    ,
-      title: "Item 3"
-      drag: true
-    ,
-      title: "Item 4"
-      drag: true
-    ,
-      title: "Item 5"
-      drag: true
-    ,
-      title: "Item 6"
-      drag: true
-    ,
-      title: "Item 7"
-      drag: true
-    ,
-      title: "Item 8"
-      drag: true
-     ]
-    
-    # # Limit items to be dropped in list1
-    # $scope.optionsList1 = accept: (dragEl) ->
-    #   if $scope.list1.length >= 2
-    #     false
-    #   else
-    #     true
-
-
 
 
   .controller 'rumorCtrl', [

@@ -37,15 +37,18 @@
         /       %li.divider
         /       %li
         /         %a{:href => "#"} One more separated link
-        / %form.navbar-form.navbar-left{:role => "search"}
-        /   .form-group
-        /     %input.form-control{:placeholder => "Search", :type => "text"}
-        /   %button.btn.btn-default{:type => "submit"} Submit
+
+
         %ul.nav.navbar-nav.navbar-right
+          %form.navbar-form.navbar-left{:role => 'search', style: 'position:relative; right:100px;'}
+            .form-group
+              %input.form-control{:placeholder => "Search", :type => "text"}
+            %button.btn.btn-default{:type => "submit"} Submit
           %li.active
             %a{:href => "#"} Open
           %li
             %a{:href => "#"} Deleted
+
 
       / /.navbar-collapse
     / /.container-fluid

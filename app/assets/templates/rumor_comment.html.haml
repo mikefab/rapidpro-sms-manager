@@ -1,21 +1,26 @@
 .modal-header
   %h5.modal-title  Phone: {{rumor.phone}}
   %br
-  %h5.modal-title.muted-text {{rumor.text}}
+  .row
+    .col-md-8
+      "{{rumor.text}}"
+    .col-md-4
+
 
 .modal-body
-  %form
+  %form{'ng-submit' => 'update_rumor()'}
     .form-group
       %label Notes
       %textarea.form-control{:placeholder => 'Notes', 'ng-model' => 'rumor.notes'}
     .form-group
       %label Explanation
       %textarea.form-control{:placeholder => 'Explanation', 'ng-model' => 'rumor.explanation'}
-    / .checkbox
-    /   %label
-    /     %input{:type => "checkbox"}
-    /       Check me out
-    %button.btn.btn-default{:type => "submit"} Submit
-
+    .checkbox
+      %label
+        %input{:type => 'checkbox', 'ng-model' => 'rumor.is_public'}
+          Make public with explanation
+    %button.btn.btn-default{:type => 'submit'} Submit
+    .alert.fade{"active-class" => "in", "flash-alert" => "success"}
+      %span.alert-message {{flash.message}}
 .modal-footer
-  %button.btn.btn-primary{"ng-click" => "cancel()"} OK
+  %button.btn.btn-warning{"ng-click" => "cancel()"} close
