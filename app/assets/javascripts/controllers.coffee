@@ -1,5 +1,16 @@
 angular.module('myApp.controllers', [])
 
+  .controller "ModalInstanceCtrl", ($scope, $modalInstance, rumor) ->
+    console.log rumor
+    $scope.rumor = rumor
+    $scope.ok = ->
+      $modalInstance.close $scope.selected.item
+
+    $scope.cancel = ->
+      $modalInstance.dismiss "cancel"
+
+
+
 
   .controller "oneCtrl", ($scope, $timeout) ->
     $scope.list1 = []

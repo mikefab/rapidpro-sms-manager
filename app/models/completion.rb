@@ -13,7 +13,10 @@ class Completion
   field :created_at, type: DateTime
   field :ip,         type: String  
   field :status,     type: String
-  field :urgency,    type: String
+  field :urgency,        type: String
+  field :soft_delete,    type: Boolean
+  field :notes,          type: String
+  field :explanation,    type: String
   # field :steps,   type: Array
   
   embeds_many :steps

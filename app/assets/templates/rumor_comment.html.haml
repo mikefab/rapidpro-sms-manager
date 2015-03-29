@@ -1,0 +1,22 @@
+.modal-header
+  %h5.modal-title  Phone: {{rumor.phone}}
+  %br
+  %h5.modal-title.muted-text {{rumor.text}}
+
+.modal-body
+  %form
+    .form-group
+      %label Notes
+      %textarea.form-control{:placeholder => 'Notes', 'ng-model' => 'rumor.notes'}
+    .form-group
+      %label Explanation
+      %textarea.form-control{:placeholder => 'Explanation', 'ng-model' => 'rumor.explanation'}
+    / .checkbox
+    /   %label
+    /     %input{:type => "checkbox"}
+    /       Check me out
+    %button.btn.btn-default{:type => "submit"} Submit
+
+.modal-footer
+  %button.btn.btn-primary{"ng-click" => "ok()"} OK
+  %button.btn.btn-warning{"ng-click" => "cancel()"} Cancel

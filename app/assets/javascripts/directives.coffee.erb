@@ -1,6 +1,6 @@
 angular.module('myApp.directives', [])
 
-  .directive 'rumor', (RumorService) ->
+  .directive 'rumor', ($modal, $log, RumorService) ->
     restrict: 'E'
     templateUrl: "<%= asset_path 'rumor.html' %>"
     scope:
@@ -28,9 +28,28 @@ angular.module('myApp.directives', [])
         $scope.rumor.urgency = urgency_level
         $scope.rumor.put()
 
-
       $scope.show_options = () ->
         $scope.display_options  = !$scope.display_options
+
+      $scope.delete = () ->
+        $scope.rumor.soft_delete = 1
+        $scope.rumor.status = 'deleted'
+        $scope.rumor.put()
+
+      $scope.open = (size) ->
+        modalInstance = $modal.open(
+          templateUrl: "<%= asset_path 'rumor_comment.html' %>"
+          controller: "ModalInstanceCtrl"
+          size: size
+          resolve:
+            rumor: ->
+              $scope.rumor
+        )
+        modalInstance.result.then ((selectedItem) ->
+          $scope.selected = selectedItem
+        ), ->
+          $log.info "Modal dismissed at: " + new Date()
+
 
 
   .directive 'diagram', () ->

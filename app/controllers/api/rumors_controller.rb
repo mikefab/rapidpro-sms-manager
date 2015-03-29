@@ -8,11 +8,15 @@ class Api::RumorsController < ApplicationController
     @completions = []
     Completion.all.order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}.each do |c|
       @completions << {
-        id:         c.id.to_s,
-        text:       c.text,
-        last_date:  c.created_at,
-        status:     c.status  || 'new',
-        urgency:    c.urgency || 'low'
+        explanation: c.explanation,
+        id:          c.id.to_s,
+        text:        c.text,
+        last_date:   c.created_at,
+        status:      c.status  || 'new',
+        urgency:     c.urgency || 'low',
+        notes:       c.notes,
+        phone:       c.phone
+
       }
     end
     render json: @completions
@@ -41,6 +45,6 @@ class Api::RumorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def completion_params
-      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text)
+      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text, :soft_delete, :notes, :explanation)
     end
 end
