@@ -1,7 +1,6 @@
 %div.capsule{'ng-mouseenter' => 'show_options()', 'ng-mouseleave' => 'show_options()', 'ng-class' => "{urgency_low: rumor.urgency == 'low', urgency_medium: rumor.urgency == 'medium', urgency_high: rumor.urgency == 'high'}"}
   {{rumor.text}}
   %br
-  {{rumor.date | date:'MM/dd/yyyy h:mma'}}
   %div.rumor_options
     %div{'ng-show' => 'display_options'}
       %span{'ng-repeat' => 'urgency in urgencies'}
