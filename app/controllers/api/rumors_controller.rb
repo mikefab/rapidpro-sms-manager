@@ -16,6 +16,7 @@ class Api::RumorsController < ApplicationController
         urgency:     c.urgency || 'low',
         notes:       c.notes,
         phone:       c.phone,
+        arrived_on: c.arrived_on,
 
         is_public:   c.is_public
       }
@@ -46,6 +47,6 @@ class Api::RumorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def completion_params
-      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text, :soft_delete, :notes, :explanation, :is_public)
+      params.require(:rumor).permit(:run, :flow, :phone, :values, :steps, :step, :primary, :ids, :status, :urgency, :text, :soft_delete, :notes, :explanation, :is_public, :arrived_on)
     end
 end
