@@ -17,6 +17,7 @@
 //= require angular-bootstrap
 //= require restangular
 //= require angular-flash
+//= require angular-ui-router/release/angular-ui-router.js
 //= require angular-dragdrop
 //= require lodash
 //= require_tree .
