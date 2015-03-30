@@ -6,7 +6,14 @@ class Api::RumorsController < ApplicationController
   def index
     # Track.create(ip: request.remote_ip, params: params)
     @completions = []
-    Completion.all.order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}.each do |c|
+    if params[:deleted]
+      rumors = Completion.all.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
+    else
+      rumors = Completion.all.where(soft_delete: !true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
+    end
+
+
+    rumors.each do |c|
       @completions << {
         explanation: c.explanation,
         id:          c.id.to_s,
@@ -16,8 +23,8 @@ class Api::RumorsController < ApplicationController
         urgency:     c.urgency || 'low',
         notes:       c.notes,
         phone:       c.phone,
-        arrived_on: c.arrived_on,
-
+        arrived_on:  c.arrived_on,
+        soft_delete: c.soft_delete || 'false',
         is_public:   c.is_public
       }
     end
