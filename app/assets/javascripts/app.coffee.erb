@@ -1,8 +1,29 @@
-angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directives',  'ui.bootstrap', 'restangular', 'ui.bootstrap', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ngDragDrop'])
+angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directives',  'ui.bootstrap', 'restangular', 'ui.bootstrap', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.router', 'ngDragDrop'])
   .config [
     'RestangularProvider'
-    'flashProvider'
-    (RestangularProvider) ->
+    '$urlRouterProvider'
+    '$stateProvider'
+
+    (RestangularProvider, $urlRouterProvider, $stateProvider) ->
       RestangularProvider.setBaseUrl "/api"
       #flashProvider.errorClassnames.push "alert-danger"
+    #
+    # For any unmatched url, redirect to /state1
+      $urlRouterProvider.otherwise "/current"
+      
+      #
+      # Now set up the states
+      $stateProvider.state('current',
+        url: "/current"
+        templateUrl: 'assets/current_rumors.html'
+        controller: 'rumorCtrl'
+        activetab: 'current'
+
+      ).state('deleted',
+        url: "/deleted"
+        templateUrl: 'assets/deleted_rumors.html'
+        controller: 'deletedRumorsCtrl'
+        activetab: 'deleted'
+
+      )
   ]
