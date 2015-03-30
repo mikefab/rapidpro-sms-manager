@@ -9,7 +9,7 @@
 
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
   %div{"ng-show" => 'loader.loading', style:'position:absolute;'}
-    %img{'src' => 'assets/ajax-loader.gif'}
+    =image_tag asset_path('ajax-loader.gif')
 
   %br
   .row
