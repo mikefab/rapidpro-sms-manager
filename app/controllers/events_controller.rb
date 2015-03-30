@@ -66,18 +66,20 @@ class EventsController < ApplicationController
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
     @completion.update!(
-      run:        params[:run]    ,
-      phone:      phone  ,
-      text:       params[:text]   ,
-      flow:       params[:flow]   ,
-      step:       params[:step]   ,
-      values:     JSON.parse(params[:values]),
-      steps:      steps,
-      primary:    JSON.parse(params[:steps]).first['node'],
-      ids:        JSON.parse(params[:steps]).map{|e| e['node']},
-      arrived_on: JSON.parse(params[:steps]).last["arrived_on"],
-      left_on:    JSON.parse(params[:steps]).last["left_on"],
-      created_at: DateTime.now,
+      run:         params[:run]    ,
+      phone:       phone  ,
+      text:        params[:text]   ,
+      flow:        params[:flow]   ,
+      step:        params[:step]   ,
+      values:      JSON.parse(params[:values]),
+      steps:       steps,
+      primary:     JSON.parse(params[:steps]).first['node'],
+      ids:         JSON.parse(params[:steps]).map{|e| e['node']},
+      arrived_on:  JSON.parse(params[:steps]).last["arrived_on"],
+      left_on:     JSON.parse(params[:steps]).last["left_on"],
+      created_at:  DateTime.now,
+      status:      'new',
+      soft_delete: false,
       ip: request.remote_ip
       )
 

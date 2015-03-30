@@ -9,7 +9,7 @@ class Api::RumorsController < ApplicationController
     if params[:deleted]
       rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
     else
-      rumors = Completion.where(soft_delete: false).or.where(soft_delete: nil).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
+      rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
     end
 
 
