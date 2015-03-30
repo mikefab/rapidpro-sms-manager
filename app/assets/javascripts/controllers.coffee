@@ -51,7 +51,7 @@ angular.module('myApp.controllers', [])
     'SurveyService'
     'DiagramService'
     ($scope, $http, SurveyService, DiagramService) ->
-
+      $scope.loader = loading: false
       $scope.instructions = true
       $scope.get_surveys  = () ->
         SurveyService.getList().then (surveys) ->
@@ -61,8 +61,10 @@ angular.module('myApp.controllers', [])
             $scope.get_diagram surveys[0].node
 
       $scope.get_diagram = (node) ->
+        $scope.loader.loading = true
         $scope.selected  = node
         DiagramService.getList(node: node).then (diagram) ->
+          $scope.loader.loading = false
           $scope.nodes   = diagram[0]
           $scope.node    = node
 
