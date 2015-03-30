@@ -8,9 +8,13 @@
   .col-md-2
 
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
-  %div{"ng-show" => 'loader.loading', style:'position:absolute;'}
-    =image_tag asset_path('ajax-loader.gif')
-
+  .row
+    .col-md-5
+    .col-md-6
+      %div.pull-right{"ng-show" => 'loader.loading', style:'position:absolute;'}
+        =image_tag asset_path('ajax-loader.gif')
+    .col-md-6
+    
   %br
   .row
     .col-md-3.pre-scrollable{style: 'max-height:5000px;'}
