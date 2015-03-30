@@ -22,6 +22,7 @@ class Api::RumorsController < ApplicationController
         status:      c.status  || 'new',
         urgency:     c.urgency || 'low',
         notes:       c.notes,
+        explanation: c.explanation,
         phone:       c.phone,
         arrived_on:  c.arrived_on,
         soft_delete: c.soft_delete || 'false',
