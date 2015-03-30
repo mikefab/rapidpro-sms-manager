@@ -7,9 +7,9 @@ class Api::RumorsController < ApplicationController
     # Track.create(ip: request.remote_ip, params: params)
     @completions = []
     if params[:deleted]
-      rumors = Completion.all.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
+      rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
     else
-      rumors = Completion.all.where(soft_delete: !true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
+      rumors = Completion.where(soft_delete: false).or.where(soft_delete: nil).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
     end
 
 
