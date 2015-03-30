@@ -1,5 +1,27 @@
 angular.module('myApp.directives', [])
 
+
+  .directive 'deleted', [
+    'RumorService'
+    'flash'
+
+    (RumorService, flash) ->
+      restrict: 'E'
+      templateUrl: "<%= asset_path 'deleted_rumor.html' %>"
+      scope:
+        rumor: '=',
+      link: ($scope, $el, $attrs) ->
+
+        $scope.restore = () ->
+          $scope.rumor.soft_delete = 0
+
+          $scope.rumor.put().then (response) ->
+            if response
+              flash.success = 'Rumor restored!'
+
+  ]
+
+
   .directive 'rumor', [
     '$modal'
     '$log'
@@ -39,8 +61,9 @@ angular.module('myApp.directives', [])
 
         $scope.delete = () ->
           $scope.rumor.soft_delete = 1
-          $scope.rumor.status = 'deleted'
           $scope.rumor.put()
+          $scope.$parent.rumors = _.difference $scope.$parent.rumors, [ $scope.rumor ]
+
 
         $scope.make_public = () ->
           $scope.rumor.is_public = !$scope.rumor.is_public

@@ -22,10 +22,25 @@ angular.module('myApp.controllers', [])
     ]
 
 
+  .controller 'deletedRumorsCtrl', [
+    '$scope'
+    'RumorService'
+    ($scope, RumorService) ->
+
+      $scope.deleted_rumors  = () ->
+        RumorService.getList(deleted: 'true').then (rumors) ->
+          $scope.rumors  = rumors
+
+      $scope.deleted_rumors()
+
+  ]
+
+
   .controller 'rumorCtrl', [
     '$scope'
     'RumorService'
     'StatusService'
+
     ($scope, RumorService, StatusService) ->
 
       $scope.get_statuses = () ->
