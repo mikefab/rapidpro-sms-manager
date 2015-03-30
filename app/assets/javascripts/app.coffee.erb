@@ -15,13 +15,13 @@ angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directive
       # Now set up the states
       $stateProvider.state('current',
         url: "/current"
-        templateUrl: 'assets/current_rumors.html'
+        templateUrl: "<%= asset_path 'current_rumors.html' %>"
         controller: 'rumorCtrl'
         activetab: 'current'
 
       ).state('deleted',
         url: "/deleted"
-        templateUrl: 'assets/deleted_rumors.html'
+        templateUrl: "<%= asset_path 'deleted_rumors.html' %>"
         controller: 'deletedRumorsCtrl'
         activetab: 'deleted'
 
