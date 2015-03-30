@@ -2,6 +2,9 @@
   {{rumor.text}}
   %br
   {{rumor.arrived_on | date:'MM/dd/yyyy h:mma'}}
+
+  %span.glyphicon.glyphicon-comment{'title' => 'has comment or explanation', 'ng-show' => '!!rumor.comment || !!rumor.explanation'}
+
   %div.rumor_options
     %div{'ng-show' => 'display_options'}
       %span{'ng-repeat' => 'urgency in urgencies'}
@@ -17,10 +20,12 @@
 
 
       &nbsp;
-      .glyphicon.glyphicon-comment.pointer{'ng-click' => "open('lg')"}
+      .glyphicon.glyphicon-pencil.pointer{'title' => 'Add a comment or explanation', 'ng-click' => "open('lg')"}
       / &nbsp;
       / .glyphicon.glyphicon-earphone{'ng-click' => "open('lg')"}
 
       .glyphicon.glyphicon-ok.pointer{'ng-class' => "{is_public: rumor.is_public == 1, not_public: rumor.is_public != 1}", 'title' => 'Make rumor public', 'ng-click' => 'make_public()'}
+  / .alert.fade{"active-class" => "in", "flash-alert" => "success"}
+  /   %span.alert-message {{flash.message}}
   / .alert.fade{"active-class" => "in", "flash-alert" => "success"}
   /   %span.alert-message {{flash.message}}
