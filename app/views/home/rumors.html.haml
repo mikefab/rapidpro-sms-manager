@@ -44,29 +44,15 @@
             .form-group
               %input.form-control{:placeholder => "Search", :type => "text", :disabled => ""}
             %button.btn.btn-default{:type => "submit", :disabled => ""} Submit
-          %li.active
-            %a{:href => "#"} Open
-          %li
-            %a{:href => "#"} Deleted
-
+          %li{"ui-sref-active" => "active"}
+            %a{'ui-sref' => 'current'} Current
+          %li{"ui-sref-active" => "active"}
+            %a{'ui-sref' => 'deleted'} Deleted
 
       / /.navbar-collapse
     / /.container-fluid
 
 %div.container-fluid{'ng-controller' => 'rumorCtrl'}
-  .row
-    .col-md-3{'ng-repeat' => 'status in statuses'}
-      %div
-        .row
-          .col-md-12.text-center
-            %strong
-              {{status.name}}
-        %br
-        .row
-          .col-md-12
-            %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name}" }
-              %li
-                %span
-                  %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
+  %div{"ui-view" => ""}
 
 

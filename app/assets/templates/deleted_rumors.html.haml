@@ -1,0 +1,9 @@
+.row
+  .col-md-8.pre-scrollable{ style: 'max-height: 900px;'}
+    %ul{'ng-repeat' => "rumor in rumors | filter:{ soft_delete: true}" }
+      %li
+        %deleted{rumor: 'rumor'}
+
+  .col-md-4
+    .alert.fade{"active-class" => "in", "flash-alert" => "success"}
+      %span.alert-message {{flash.message}}

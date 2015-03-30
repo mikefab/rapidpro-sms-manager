@@ -1,0 +1,14 @@
+.row.pre-scrollable{style: 'min-height: 500px;'} 
+  .col-md-3{'ng-repeat' => 'status in statuses'}
+    %div
+      .row
+        .col-md-12.text-center
+          %strong
+            {{status.name}}
+      %br
+      .row
+        .col-md-12
+          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name, soft_delete: false}" }
+            %li
+              %span
+                %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
