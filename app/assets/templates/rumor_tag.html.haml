@@ -6,8 +6,8 @@
   %form{'ng-submit' => 'update_rumor()'}
     .form-group
       %label Tags
-      %textarea.form-control{:placeholder => 'Notes', 'ng-model' => 'rumor.tags'}
-    %button.btn.btn-default{:type => 'submit'} Submit
+      %textarea.form-control{:placeholder => 'Tags', 'ng-model' => 'rumor.tags', 'disabled' => ''}
+    %button.btn.btn-default{:type => 'submit', 'disabled' => ''} Submit
     .alert.fade{"active-class" => "in", "flash-alert" => "success"}
       %span.alert-message {{flash.message}}
 .modal-footer
