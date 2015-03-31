@@ -60,10 +60,8 @@ angular.module('myApp.directives', [])
           $scope.display_options  = !$scope.display_options
 
         $scope.delete = () ->
-          $scope.rumor.soft_delete = 1
+          $scope.rumor.soft_delete = true
           $scope.rumor.put()
-          $scope.$parent.rumors = _.difference $scope.$parent.rumors, [ $scope.rumor ]
-
 
         $scope.make_public = () ->
           $scope.rumor.is_public = !$scope.rumor.is_public
