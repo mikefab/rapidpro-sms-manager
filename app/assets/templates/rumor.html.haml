@@ -3,7 +3,7 @@
   %br
   {{rumor.arrived_on | date:'MM/dd/yyyy h:mma'}}
 
-  %span.glyphicon.glyphicon-comment{'title' => 'has comment or explanation', 'ng-show' => '!!rumor.notes || !!rumor.explanation'}
+  %span.glyphicon.glyphicon-comment.pointer{'title' => 'has comment or explanation', 'ng-show' => '!!rumor.notes || !!rumor.explanation', 'ng-click' => "open('lg')"}
 
   %div.rumor_options
     %div{'ng-show' => 'display_options'}
