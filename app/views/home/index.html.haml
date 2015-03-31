@@ -30,7 +30,7 @@
           Click a Survey for a response summary.
 
 
-      .row.pre-scrollable{style: 'min-height:900px;'}
+      .row.pre-scrollable{style: 'min-height:600px;'}
         .col-md-12
           %ul{'ng-repeat' => 'survey in surveys'}
             %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
