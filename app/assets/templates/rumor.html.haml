@@ -3,7 +3,7 @@
   %br
   {{rumor.arrived_on | date:'MM/dd/yyyy h:mma'}}
 
-  %span.glyphicon.glyphicon-comment.pointer{'title' => 'has comment or explanation', 'ng-show' => '!!rumor.notes || !!rumor.explanation', 'ng-click' => "open('lg')"}
+  %span.glyphicon.glyphicon-comment.pointer{'title' => 'Has comment or explanation', 'ng-show' => '!!rumor.notes || !!rumor.explanation', 'ng-click' => "open('lg')"}
 
   %div.rumor_options
     %div{'ng-show' => 'display_options'}
@@ -11,7 +11,7 @@
         %span.urgency_box{title: 'urgency: {{urgency.name}}', 'ng-click' => 'update_urgency(urgency.name)', 'ng-class' => 'urgency.name'}
           &nbsp;&nbsp;
       &nbsp;
-      .glyphicon.glyphicon-trash.pointer{title: 'soft delete', 'ng-click' => 'delete()'}
+      .glyphicon.glyphicon-trash.pointer{title: 'Soft delete', 'ng-click' => 'delete()'}
       &nbsp;
       %span
         %i
@@ -24,7 +24,13 @@
       / &nbsp;
       / .glyphicon.glyphicon-earphone{'ng-click' => "open('lg')"}
 
+      .glyphicon.glyphicon-phone.pointer{'title' => 'Respond to rumor', 'ng-click' => "open_response('lg')"}
+      .glyphicon.glyphicon-tag.pointer{'title' => 'Tag rumor', 'ng-click' => "open_tag('lg')"}
       .glyphicon.glyphicon-ok.pointer{'ng-class' => "{is_public: rumor.is_public == 1, not_public: rumor.is_public != 1}", 'title' => 'Make rumor public', 'ng-click' => 'make_public()'}
+
+
+
+
   / .alert.fade{"active-class" => "in", "flash-alert" => "success"}
   /   %span.alert-message {{flash.message}}
   / .alert.fade{"active-class" => "in", "flash-alert" => "success"}

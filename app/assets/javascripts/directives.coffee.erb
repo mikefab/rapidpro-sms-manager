@@ -70,6 +70,26 @@ angular.module('myApp.directives', [])
             #   flash.success = 'Rumor updated!'
 
 
+        $scope.open_response = (size) ->
+          modalInstance = $modal.open(
+            templateUrl: "<%= asset_path 'rumor_response.html' %>"
+            controller: "ModalInstanceCtrl"
+            size: size
+            resolve:
+              rumor: ->
+                $scope.rumor
+          )
+
+        $scope.open_tag = (size) ->
+          modalInstance = $modal.open(
+            templateUrl: "<%= asset_path 'rumor_tag.html' %>"
+            controller: "ModalInstanceCtrl"
+            size: size
+            resolve:
+              rumor: ->
+                $scope.rumor
+          )
+
         $scope.open = (size) ->
           modalInstance = $modal.open(
             templateUrl: "<%= asset_path 'rumor_comment.html' %>"

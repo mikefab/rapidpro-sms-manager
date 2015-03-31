@@ -1,0 +1,14 @@
+.modal-header
+  %h5.modal-title  Tags will be assigned to rumors here. 
+
+
+.modal-body
+  %form{'ng-submit' => 'update_rumor()'}
+    .form-group
+      %label Tags
+      %textarea.form-control{:placeholder => 'Notes', 'ng-model' => 'rumor.tags'}
+    %button.btn.btn-default{:type => 'submit'} Submit
+    .alert.fade{"active-class" => "in", "flash-alert" => "success"}
+      %span.alert-message {{flash.message}}
+.modal-footer
+  %button.btn.btn-warning{"ng-click" => "cancel()"} close
