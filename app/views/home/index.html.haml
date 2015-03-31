@@ -3,8 +3,14 @@
   .col-md-8
     %br
     %div
-      / %div{style: 'font-size:18px;'}
-      /   NGOs frequently send out surveys to staff and the general public with sms servers like FrontLine SMS and Rapidpro. This page visualizes these surveys via webhooks.
+      %p
+        This page diagrams responses to sms surveys sent by
+        %a{'href' => 'http://www.rapidpro.io'} Rapidpro 
+        to NGO staff in the field throughout Liberia. 
+      %p
+        To see your survey diagramed here, POST your webhooks to:
+        %span
+          http://askliberia.herokuapp.com/events.
   .col-md-2
 
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
@@ -17,25 +23,26 @@
     
   %br
   .row
-    .col-md-3.pre-scrollable{style: 'max-height:5000px;'}
+    .col-md-3
       %p
         %br
         %strong{'ng-show' => 'surveys.length>0'}
           Click a Survey for a response summary.
 
 
-      %p
-        %ul{'ng-repeat' => 'survey in surveys'}
-          %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
-            {{survey.question}}
-            %br
-            %br
-            %p{style: 'font-size:11px;'}
-              First sms: {{survey.first_date}}
+      .row.pre-scrollable{style: 'min-height:900px;'}
+        .col-md-12
+          %ul{'ng-repeat' => 'survey in surveys'}
+            %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
+              {{survey.question}}
               %br
-              Last sms: {{survey.last_date}}
               %br
-              Surveys completed: {{survey.total_instances}}
+              %p{style: 'font-size:11px;'}
+                First sms: {{survey.first_date}}
+                %br
+                Last sms: {{survey.last_date}}
+                %br
+                Surveys completed: {{survey.total_instances}}
 
 
     %strong{'ng-show' => 'surveys.length < 1', style: 'font-size:24px;'}
