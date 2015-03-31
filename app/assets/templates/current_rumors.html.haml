@@ -4,7 +4,7 @@
       .row
         .col-md-12.text-center
           %strong
-            {{status.name}}
+            %capitalize{word: 'status.name'}
 
 .row.pre-scrollable{style: 'min-height: 500px;'} 
   .col-md-3{'ng-repeat' => 'status in statuses'}
