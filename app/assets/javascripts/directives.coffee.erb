@@ -1,6 +1,17 @@
 angular.module('myApp.directives', [])
 
 
+  .directive 'capitalize', () ->
+    restrict: 'E'
+    scope:
+      word: '=',
+    template: "{{word}}"
+    link: ($scope, $el, $attrs) ->
+      $scope.word = $scope.word.replace /^(.)|\s(.)/g, (v) -> v.toUpperCase()
+
+
+
+
   .directive 'deleted', [
     'RumorService'
     'flash'
