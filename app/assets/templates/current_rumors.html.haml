@@ -11,7 +11,7 @@
     %div
       .row
         .col-md-12
-          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name}" }
+          %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name, soft_delete: !true}" }
             %li
               %span
                 %rumor{rumor: 'rumor', statuses: 'statuses', urgencies: 'urgencies'} 
