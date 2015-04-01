@@ -4,32 +4,32 @@ class Api::RumorsController < ApplicationController
   respond_to :json
 
   def index
-    # Track.create(ip: request.remote_ip, params: params)
-    @completions = []
-    if params[:deleted]
-      rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
-    else
-      rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
-    end
+    # # Track.create(ip: request.remote_ip, params: params)
+    # @completions = []
+    # if params[:deleted]
+    #   rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
+    # else
+    #   rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
+    # end
 
 
-    rumors.each do |c|
-      @completions << {
-        explanation: c.explanation,
-        id:          c.id.to_s,
-        text:        c.text,
-        last_date:   c.created_at,
-        status:      c.status  || 'new',
-        urgency:     c.urgency || 'low',
-        notes:       c.notes,
-        explanation: c.explanation,
-        phone:       c.phone,
-        arrived_on:  c.arrived_on,
-        soft_delete: c.soft_delete || 'false',
-        is_public:   c.is_public
-      }
-    end
-    render json: @completions
+    # rumors.each do |c|
+    #   @completions << {
+    #     explanation: c.explanation,
+    #     id:          c.id.to_s,
+    #     text:        c.text,
+    #     last_date:   c.created_at,
+    #     status:      c.status  || 'new',
+    #     urgency:     c.urgency || 'low',
+    #     notes:       c.notes,
+    #     explanation: c.explanation,
+    #     phone:       c.phone,
+    #     arrived_on:  c.arrived_on,
+    #     soft_delete: c.soft_delete || 'false',
+    #     is_public:   c.is_public
+    #   }
+    # end
+    # render json: @completions
   end
 
 
