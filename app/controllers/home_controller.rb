@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
 
   def rumors
-
+	redirect_to '/'
   end
 
 end
