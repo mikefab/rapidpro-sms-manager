@@ -1,16 +1,16 @@
 .row
-  .col-sm-3{'ng-repeat' => 'status in statuses'}
+  .col-md-3{'ng-repeat' => 'status in statuses'}
     %div
       .row
-        .col-sm-12.text-center
+        .col-md-12.text-center
           %strong
             %capitalize{word: 'status.name'}
 %br
 .row.pre-scrollable{style: 'min-height: 500px;'} 
-  .col-sm-3{'ng-repeat' => 'status in statuses'}
+  .col-md-3{'ng-repeat' => 'status in statuses'}
     %div
       .row
-        .col-sm-12
+        .col-md-12
           %ul{'ng-repeat' => "rumor in rumors | filter:{ status: status.name, soft_delete: !true}" }
             %li
               %span
