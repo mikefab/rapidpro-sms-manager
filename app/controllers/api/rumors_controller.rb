@@ -1,35 +1,40 @@
 class Api::RumorsController < ApplicationController
   before_action :set_completion, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   respond_to :json
 
   def index
-    # # Track.create(ip: request.remote_ip, params: params)
-    # @completions = []
-    # if params[:deleted]
-    #   rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
-    # else
-    #   rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
-    # end
+    unless current_user.role == 'admin'
+      render json: {error: 'You need to sign in or sign up before continuing.'}
+    else
+      # Track.create(ip: request.remote_ip, params: params)
+      @completions = []
+      if params[:deleted]
+        rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
+      else
+        rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
+      end
 
 
-    # rumors.each do |c|
-    #   @completions << {
-    #     explanation: c.explanation,
-    #     id:          c.id.to_s,
-    #     text:        c.text,
-    #     last_date:   c.created_at,
-    #     status:      c.status  || 'new',
-    #     urgency:     c.urgency || 'low',
-    #     notes:       c.notes,
-    #     explanation: c.explanation,
-    #     phone:       c.phone,
-    #     arrived_on:  c.arrived_on,
-    #     soft_delete: c.soft_delete || 'false',
-    #     is_public:   c.is_public
-    #   }
-    # end
-    # render json: @completions
+      rumors.each do |c|
+        @completions << {
+          explanation: c.explanation,
+          id:          c.id.to_s,
+          text:        c.text,
+          last_date:   c.created_at,
+          status:      c.status  || 'new',
+          urgency:     c.urgency || 'low',
+          notes:       c.notes,
+          explanation: c.explanation,
+          phone:       c.phone,
+          arrived_on:  c.arrived_on,
+          soft_delete: c.soft_delete || 'false',
+          is_public:   c.is_public
+        }
+      end
+      render json: @completions
+    end
   end
 
 
