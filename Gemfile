@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
+gem 'devise'
 gem 'jquery-ui-rails'
 gem 'pry'
+# gem 'omniauth-facebook'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'hashie'
 gem 'bower-rails'
