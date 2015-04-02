@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
+  # post 'user/login' => 'user#login_user', :as => :session
   get 'home/index'
   get 'rumors'  => 'home#rumors'
 
