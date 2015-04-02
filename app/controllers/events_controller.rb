@@ -48,11 +48,11 @@ class EventsController < ApplicationController
     end
 
     @record = Record.create!(
-      run:     params[:run]    ,
+      run:     params[:run],
       phone:   phone,
-      text:    params[:text]   ,
-      flow:    params[:flow]   ,
-      step:    params[:step]   ,
+      text:    params[:text],
+      flow:    params[:flow],
+      step:    params[:step],
       channel: params[:channel],
       values:  JSON.parse(params[:values]),
       steps:   steps,
@@ -66,11 +66,11 @@ class EventsController < ApplicationController
 
     @completion = Completion.find_or_initialize_by(phone: phone, primary: JSON.parse(params[:steps]).first['node'])
     @completion.update!(
-      run:         params[:run]    ,
-      phone:       phone  ,
-      text:        params[:text]   ,
-      flow:        params[:flow]   ,
-      step:        params[:step]   ,
+      run:         params[:run],
+      phone:       phone,
+      text:        params[:text],
+      flow:        params[:flow],
+      step:        params[:step],
       values:      JSON.parse(params[:values]),
       steps:       steps,
       primary:     JSON.parse(params[:steps]).first['node'],

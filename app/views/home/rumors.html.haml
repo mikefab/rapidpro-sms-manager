@@ -51,8 +51,10 @@
 
       / /.navbar-collapse
     / /.container-fluid
-
-%div.container-fluid{'ng-controller' => 'rumorCtrl'}
-  %div{"ui-view" => ""}
-
+- if is_admin?
+  %div.container-fluid{'ng-controller' => 'rumorCtrl'}
+    %div{"ui-view" => ""}
+- else
+  %p{style: 'position:relative; left:200px;'} 
+    You are not allowed to view this content.
 
