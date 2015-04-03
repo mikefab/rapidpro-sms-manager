@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  # post 'user/login' => 'user#login_user', :as => :session
   get 'home/index'
   get 'rumors'  => 'home#rumors'
 
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :events
   resources :completions
+  resources :rumors
 
   namespace :api do
     resources :diagrams, defaults: { format: :json }
