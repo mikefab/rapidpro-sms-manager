@@ -1,6 +1,9 @@
 class Api::RumorsController < ApplicationController
-  before_action :set_completion, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_action      :set_completion, only: [:show, :edit, :update, :destroy]
+  before_filter      :authenticate_user!
+  skip_before_filter :verify_authenticity_token
+
+
 
   respond_to :json
 
@@ -10,12 +13,7 @@ class Api::RumorsController < ApplicationController
     else
       # Track.create(ip: request.remote_ip, params: params)
       @completions = []
-      if params[:deleted]
-        rumors = Completion.where(soft_delete: true).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}      
-      else
-        rumors = Completion.where(soft_delete: false).order_by(:arrived_on => 'desc').select{|c| c.steps[0].text.match(/deysay/i)}
-      end
-
+      rumors = params[:deleted] ? Completion.rumors(true) : Completion.rumors(false)
 
       rumors.each do |c|
         @completions << {
@@ -45,7 +43,6 @@ class Api::RumorsController < ApplicationController
     #   if @completion.update(completion_params)
     #     format.json { render :json, status: :ok, location: @completion }
     #   else
-
     #     format.json { render json: @completion.errors, status: :unprocessable_entity }
     #   end
     # end

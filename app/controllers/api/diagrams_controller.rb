@@ -3,7 +3,6 @@ class Api::DiagramsController < ApplicationController
 
   def index
   	diagram = Completion.diagram(params[:node])
-  	flare   = Completion.flare(diagram)
     render json: [Completion.diagram(params[:node])]
   end
 end

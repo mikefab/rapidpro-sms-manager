@@ -18,12 +18,24 @@ class Completion
   field :notes,          type: String
   field :explanation,    type: String
   field :is_public,      type: Boolean
+  field :is_rumor,       type: Boolean
   # field :steps,   type: Array
   
   embeds_many :steps
 
+
+  def self.rumors(current_or_deleted)
+    Completion.where(
+      is_rumor: true,
+      soft_delete: current_or_deleted
+      ).order_by(
+        :arrived_on => 'desc'
+      ) 
+  end
+
+
   def self.primary_node_text(id)
-    Record.where(primary: id).first.steps.first.text
+    Completion.where(primary: id).first.steps.first.text
   end
 
 
@@ -31,79 +43,110 @@ class Completion
     Completion.where(primary: id).all.count
   end
 
+  def self.last_event_date(id)
+    record = Completion.where(primary: id).last
+    return record.created_at ? record.created_at.strftime('%c') : record.arrived_on.strftime('%c')
+  end
 
-  def self.flare(diagram)
-
+  def self.first_event_date(id)
+    record = Completion.where(primary: id).first
+    return record.created_at ? record.created_at.strftime('%c') : record.arrived_on.strftime('%c')
   end
 
   def self.diagram(node)
-    node2question = {}
-    node2response = {}
-    node2label   = {}
-    hits         = {}
+    hits        = {}
+    completions = Completion.where(primary: node)
 
-    Completion.all.group_by(&:ids).each do |arry|
-      arry[1].each do |completion| 
-        completion.steps.each do |s|
+    # Each step has an id. 
+    # Create look up tables so we can reference a question, response or label with a node id
+    node2question, node2response, node2label = node_indexes(node)
 
-          if !!s.text
-            s.text.rstrip!
-            if s.type == "A"
-              node2question[s.node] = s.text
-            else # Type is R. Maintain record of responses with frequency 
-              if !node2response[s.node]
-                node2response[s.node] = {}
-              end
-              resp = s.text.strip.downcase.capitalize
-              if resp.split.size == 1
-                resp.sub!(/[!.?]$/,'')
-                resp.sub!(/^['"]/,'')
-                resp.sub!(/['"]$/,'')
-              end
-              resp = resp.strip.capitalize
-
-              if !node2response[s.node][resp]
-                node2response[s.node][resp] = 1
-              else
-                node2response[s.node][resp] = node2response[s.node][resp] + 1
-              end
-            end
-          end
-        end
-
-        completion.values.each do |v|
-          node2label[v['node']] = v['label']
-        end
-      end
-    end
-
-    Completion.all.each do |c|
+    # Keep track of how people reached each node
+    completions.each do |c|
       c.steps.each do |s|
         hits[s.node] = !!hits[s.node] ? hits[s.node] + 1 : 1
       end
     end
 
 
-    arrays = Completion.where(primary: node).map(&:ids).uniq
+    # Create diagram
+    # The ids value per Completion is an array of nodes which map to a decision path of the flow
+    arrays = completions.map(&:ids).uniq
     seen   = {}    
     nodes  = []
-    links  = []
+    links  = [] # AKA edges
 
     arrays.each do |ar|
       ar.each_with_index do |e, i|
         unless seen[e]
           seen[e] = 1
-          node2response[e] = node2response[e].sort_by {|key, value| value}.reverse if node2response[e]
+
+          # Format the responses with the number of hits per.
+          node2response[e] = node2response[e].sort_by {
+            |key, value| value
+          }.reverse if node2response[e]
+
+          # A node will either have a question (text) or response
+          # A label is only present with a response
           nodes << {name: e, id: e, text: node2question[e], label: node2label[e], hits: hits[e], responses: node2response[e]}
         end
         links << {source: e, target: ar[i+1]} unless (i+1) == ar.length
-        #links << [{v: e, f:"#{e} _ #{node2question[e]}<div style=\"color:red; font-style:italic\">#{node2label[e]} #{node2response[e]}</div>"}, ar[i-1] || "", 'The President'] unless (i+1) == ar.length
-      end
+       end
     end
-    puts links
+
     return {nodes: nodes, links: links}
   end
 
+
+
+  def self.node_indexes(node)
+    # Create look up tables
+    node2question = {}
+    node2response = {}
+    node2label    = {}
+    # Each Completion has a primary value, the id of the node of the first question answered in a survey.
+    # Each completion an 'ids' attribute, an array of node ids like f48434b0-8871-4f7a-9339-41f96e2e7306
+    # These ids map to a decision path
+    Completion.where(primary: node).group_by(&:ids).each do |arry|
+      # The first element is the array of ids
+      # The second element is an array of Completions that contain the same array of ids.
+      arry[1].each do |completion| 
+        # steps are the questions and responses dialog.
+        completion.steps.each do |s|
+          if !!s.text
+            s.text.rstrip!
+            # 'A' I believe stands for 'Ask'
+            if s.type == 'A'
+              node2question[s.node] = s.text
+            else # Type is R (response). Maintain record of responses with frequency 
+              if !node2response[s.node]
+                node2response[s.node] = {}
+              end
+              # Clean up responses
+              response = s.text.downcase.capitalize
+              if response.split.size == 1
+                response.sub!(/[!.?]$/,'')
+                response.sub!(/^['"]/,'')
+                response.sub!(/['"]$/,'')
+              end
+              response = response.strip.capitalize
+
+              # Keep track of how many times a response was seen
+              if !node2response[s.node][response]
+                node2response[s.node][response] = 1
+              else
+                node2response[s.node][response] = node2response[s.node][response] + 1
+              end
+            end
+          end
+        end
+        completion.values.each do |v|
+          node2label[v['node']] = v['label']
+        end
+      end
+    end
+    return [node2question, node2response, node2label]
+  end
 
   # def self.flare(node)
   #   arrays = Completion.where(primary: '49e02161-7fe5-4481-aaac-531ecd1c3e4f').map(&:ids).uniq
