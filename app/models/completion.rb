@@ -23,7 +23,6 @@ class Completion
   
   embeds_many :steps
 
-
   def self.rumors(current_or_deleted)
     Completion.where(
       is_rumor: true,
@@ -32,7 +31,6 @@ class Completion
         :arrived_on => 'desc'
       ) 
   end
-
 
   def self.primary_node_text(id)
     Completion.where(primary: id).first.steps.first.text
@@ -123,13 +121,7 @@ class Completion
                 node2response[s.node] = {}
               end
               # Clean up responses
-              response = s.text.downcase.capitalize
-              if response.split.size == 1
-                response.sub!(/[!.?]$/,'')
-                response.sub!(/^['"]/,'')
-                response.sub!(/['"]$/,'')
-              end
-              response = response.strip.capitalize
+              response = clean_response s.text
 
               # Keep track of how many times a response was seen
               if !node2response[s.node][response]
@@ -148,17 +140,13 @@ class Completion
     return [node2question, node2response, node2label]
   end
 
-  # def self.flare(node)
-  #   arrays = Completion.where(primary: '49e02161-7fe5-4481-aaac-531ecd1c3e4f').map(&:ids).uniq
-  #   first  = []
-  #   arrays.each do |ar|
-  #     ar.each_with_index do |e, i|
-  #       path = []
-  #       ar[0..(i-1)].each do |ee|
-  #         path << ee
-  #       end
-  #       first << {name: e, path: path}
-  #     end
-  #   end
-  # end
+  def self.clean_response(text)
+    response = text.downcase.capitalize
+    if response.split.size == 1
+      response.sub!(/[!.?]$/,'')
+      response.sub!(/^['"]/,'')
+      response.sub!(/['"]$/,'')
+    end
+    response = response.strip.capitalize
+  end
 end
