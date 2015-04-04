@@ -3,17 +3,14 @@ class Api::RumorsController < ApplicationController
   before_filter      :authenticate_user!
   skip_before_filter :verify_authenticity_token
 
-
-
   respond_to :json
 
   def index
     unless current_user.role == 'admin'
-      render json: {error: 'You need to sign in or sign up before continuing.'}
+      render json: { error: 'You need to sign in or sign up before continuing.' }
     else
-      # Track.create(ip: request.remote_ip, params: params)
       @completions = []
-      rumors = params[:deleted] ? Completion.rumors(true) : Completion.rumors(false)
+      rumors       = Completion.rumors !!params[:deleted]
 
       rumors.each do |c|
         @completions << {
@@ -38,14 +35,6 @@ class Api::RumorsController < ApplicationController
 
   def update
     render json: @completion.update(completion_params)
-
-    # respond_to do |format|
-    #   if @completion.update(completion_params)
-    #     format.json { render :json, status: :ok, location: @completion }
-    #   else
-    #     format.json { render json: @completion.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
 
