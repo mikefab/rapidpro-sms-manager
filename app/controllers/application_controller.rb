@@ -4,22 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
-
-
   # SMS could come either to /events or to /rumors
   def save_event(params, is_rumor=false)
     event  = Event.new(entry: params, ip: request.remote_ip)
-
     # The phone number (or hash) is needed to group sms' from same user    
     if Rails.env.development?
       # We're probably using Rapidpro's simulator
-      phone   = Digest::SHA256.hexdigest params[:phone]  
+      phone   = Digest::SHA256.hexdigest "#{params[:phone]}#{params[:run]}" 
     else
       phone   = params[:phone]
-    end 
- 
+    end
     steps   = JSON.parse(params[:steps])
-
     # I think that text of last step should not be blank
     unless steps.empty?
       if steps.last['type'] == 'R'
@@ -49,7 +44,4 @@ class ApplicationController < ActionController::Base
 
     return event
   end
-
-
-
 end

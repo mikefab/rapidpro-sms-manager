@@ -7,9 +7,9 @@ class RumorsController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def create
-    params[:text].chomp!
+    params[:text].strip!
+    
     # Store raw SMS from Rapidpro
-
     @rumor = save_event params, true
 
     if @rumor.save

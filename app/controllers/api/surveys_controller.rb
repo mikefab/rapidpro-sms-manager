@@ -15,7 +15,6 @@ class Api::SurveysController < ApplicationController
         }
       end
     end
-
     render json: @primary_nodes
   end
 end

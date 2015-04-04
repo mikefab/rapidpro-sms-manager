@@ -1,15 +1,8 @@
 Rails.application.routes.draw do
 
-
   devise_for :users
   get 'home/index'
   get 'rumors'  => 'home#rumors'
-
-  #resources :records
-
-  # # resources :responses
-
-  # # resources :nodes
 
   resources :events
   resources :completions
