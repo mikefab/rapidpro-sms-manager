@@ -1,0 +1,9 @@
+Rapidpro flows can be configured with webhooks that forward the content of sms responses to a url. This application runs separate from Rapidpro and is designed to receive these responses.
+
+This application has two parts: 
+
+1. It diagrams the results of surveys. 
+   Live demo: http://askliberia.herokuapp.com/
+
+
+2. It has an interface for managing rumors. A live demo will be available shortly.
