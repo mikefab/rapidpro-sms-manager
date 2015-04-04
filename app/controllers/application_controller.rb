@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   # SMS could come either to /events or to /rumors
   def save_event(params, is_rumor=false)
     event  = Event.new(entry: params, ip: request.remote_ip)
+
     # The phone number (or hash) is needed to group sms' from same user    
     if Rails.env.development?
       # We're probably using Rapidpro's simulator
@@ -14,11 +15,13 @@ class ApplicationController < ActionController::Base
     else
       phone   = params[:phone]
     end
-    steps   = JSON.parse(params[:steps])
+
+    steps     = JSON.parse(params[:steps])
+
     # I think that text of last step should not be blank
     unless steps.empty?
       if steps.last['type'] == 'R'
-        steps.last['text'] = params[:text]
+        steps.last['text']  = params[:text]
       end
     end
 

@@ -23,10 +23,10 @@ class Completion
   
   embeds_many :steps
 
-  def self.rumors(current_or_deleted)
+  def self.rumors(options)
     Completion.where(
       is_rumor: true,
-      soft_delete: current_or_deleted
+      soft_delete: options[:deleted]
       ).order_by(
         :arrived_on => 'desc'
       ) 
