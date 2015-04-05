@@ -10,8 +10,6 @@ angular.module('myApp.directives', [])
       $scope.word = $scope.word.replace /^(.)|\s(.)/g, (v) -> v.toUpperCase()
 
 
-
-
   .directive 'deleted', [
     'RumorService'
     'flash'
@@ -29,9 +27,7 @@ angular.module('myApp.directives', [])
           $scope.rumor.put().then (response) ->
             if response
               flash.success = 'Rumor restored!'
-
   ]
-
 
   .directive 'rumor', [
     '$modal'
