@@ -10,7 +10,7 @@ There are two parts:
    Live demo: http://askliberia.herokuapp.com/
 
 
-2. An interface for managing rumors. A live demo will be available shortly.
+2. An interface for managing and responding to rumors. Live demo soon to come.
 
 ###The Database###
 
@@ -43,8 +43,8 @@ Then browse to '/' to see the diagrams.
 
 ###Installation###
 
-    git clone https://github.com/mikefab/rapidpro-diagrams-and-rumors.git
-    cd rapidpro-diagrams-and-rumors
+    git clone https://github.com/mikefab/rapidpro-rumor-app.git
+    cd rapidpro-rumor-app
     bundle
     mv config/mongoid.yml.example config/mongoid.yml
     Start the server with: rails s
@@ -62,6 +62,7 @@ Add the MongoLab Add-on.
 Rails
 Mongodb
 Angular.js
+coffeescript & HAML
 
 
 ### To do###
