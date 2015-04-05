@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'devise'
 gem 'jquery-ui-rails'
 gem 'pry'
