@@ -43,8 +43,8 @@ Then browse to '/' to see the diagrams.
 
 ###Installation###
 
-    git clone https://github.com/mikefab/rapidpro-diagram-and-rumor.git
-    cd rapidpro-diagram-and-rumor
+    git clone https://github.com/mikefab/rapidpro-diagrams-and-rumors.git
+    cd rapidpro-diagrams-and-rumors
     bundle
     mv config/mongoid.yml.example config/mongoid.yml
     Start the server with: rails s
@@ -52,11 +52,18 @@ Then browse to '/' to see the diagrams.
     rails c
     User.first.update(role: 'admin')
 
+
+
 ###Heroku###
 
 Deployment to Heroku is easy and free
 Add the MongoLab Add-on.
 
+###Tech Stack###
+
+Rails
+Mongodb
+Angular.js
 
 
 ### To do###
