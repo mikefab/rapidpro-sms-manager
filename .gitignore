@@ -12,6 +12,7 @@
 /db/*.sqlite3-journal
 /db/sphinx/
 /config/database.yml
+/config/mongoid.yml
 #/config/secrets.yml
 # Ignore all logfiles and tempfiles.
 /log/*.log
