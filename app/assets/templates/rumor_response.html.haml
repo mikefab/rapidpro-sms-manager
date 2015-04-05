@@ -4,7 +4,7 @@
   .row
     .col-md-11
       %strong
-        With API access to the Rapidpro instance, we should be able respond with the same short code that was used to submit the rumor. 
+        This functionilty is not yet complete. 
     .col-md-1
 
 
@@ -12,7 +12,7 @@
   %form{'ng-submit' => 'respond_to_rumor()'}
     .form-group
       %label Text
-      %textarea.form-control{:placeholder => 'Notes', 'ng-model' => 'rumor.notes', 'disabled' => ''}
+      %textarea.form-control{:placeholder => 'Response', 'ng-model' => 'rumor.notes', 'disabled' => ''}
     %button.btn.btn-default{:type => 'submit', 'disabled' => ''} Respond
     .alert.fade{"active-class" => "in", "flash-alert" => "success"}
       %span.alert-message {{flash.message}}
