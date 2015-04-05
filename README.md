@@ -28,7 +28,8 @@ After logging in, visit the rumor module at /rumors (localhost:3000/rumors)
 
 Here is a link to more about [webhooks](http://docs.rapidpro.io/#article_378174).
 
-**Login**
+###Login###
+
 This application uses Devise for a secure login to the rumor app. To create an authorized user, sign up at /users/sign_up and then use console to set the role to 'admin'.
 
 I will probably add rails_admin for user management soon.
@@ -49,4 +50,12 @@ Then browse to '/' to see the diagrams.
     Start the server with: rails s
     Browse to localhost:3000/users/sign_up and create a user
     rails c
-    User.last.update(role: 'admin')
+    User.first.update(role: 'admin')
+
+
+
+### To do###
+* Tests!
+* Pagination
+* Rumor search
+* Acts as taggable for rumors
