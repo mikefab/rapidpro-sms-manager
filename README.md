@@ -52,8 +52,6 @@ Then browse to '/' to see the diagrams.
     rails c
     User.first.update(role: 'admin')
 
-
-
 ###Heroku###
 
 Deployment to Heroku is easy and free
@@ -70,5 +68,6 @@ Angular.js
 * Tests!
 * Pagination
 * Rumor search
+* API calls to a Rapidpro instance
 * Data export
 * Acts as taggable for rumors
