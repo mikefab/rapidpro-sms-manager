@@ -52,10 +52,16 @@ Then browse to '/' to see the diagrams.
     rails c
     User.first.update(role: 'admin')
 
+###Heroku###
+
+Deployment to Heroku is easy and free
+Add the MongoLab Add-on.
+
 
 
 ### To do###
 * Tests!
 * Pagination
 * Rumor search
+* Data export
 * Acts as taggable for rumors
