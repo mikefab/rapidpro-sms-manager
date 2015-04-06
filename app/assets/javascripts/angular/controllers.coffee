@@ -18,7 +18,6 @@ angular.module('myApp.controllers', [])
         $scope.rumor.put().then (response) ->
           if response
             flash.success = 'Rumor updated!'
-
     ]
 
 
@@ -32,7 +31,6 @@ angular.module('myApp.controllers', [])
           $scope.rumors  = rumors
 
       $scope.deleted_rumors()
-
   ]
 
 
@@ -42,7 +40,7 @@ angular.module('myApp.controllers', [])
     'StatusService'
 
     ($scope, RumorService, StatusService) ->
-
+      $scope.rumors_loaded = false
       $scope.get_statuses = () ->
         StatusService.getList().then (statuses) ->            
           $scope.statuses  = statuses[[0]]
@@ -53,7 +51,8 @@ angular.module('myApp.controllers', [])
 
       $scope.get_rumors  = () ->
         RumorService.getList().then (rumors) ->
-          $scope.rumors  = rumors
+          $scope.rumors_loaded = true
+          $scope.rumors = rumors
 
       $scope.get_statuses().then () ->
         $scope.get_rumors()
@@ -66,10 +65,12 @@ angular.module('myApp.controllers', [])
     'SurveyService'
     'DiagramService'
     ($scope, $http, SurveyService, DiagramService) ->
+      $scope.surveys_loaded = false
       $scope.loader = loading: false
       $scope.instructions = true
       $scope.get_surveys  = () ->
         SurveyService.getList().then (surveys) ->
+          $scope.surveys_loaded = true
           $scope.surveys  = surveys
           if !!surveys[0]
             $scope.selected = surveys[0].node
