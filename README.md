@@ -1,4 +1,4 @@
-#Rapidpro Diagram and Rumor Manager#
+#Rapidpro SMS Manager#
 
 [Rapidpro](http://www.rapidpro.io) flows can be configured with webhooks that forward the content of sms responses to a url. 
 
@@ -11,6 +11,11 @@ There are two parts:
 
 
 2. An interface for managing and responding to rumors. Live demo soon to come.
+
+
+###WARNING###
+This is a prototype. It is not production ready.
+
 
 ###The Database###
 
@@ -43,18 +48,21 @@ Then browse to '/' to see the diagrams.
 
 ###Installation###
 
-    git clone https://github.com/mikefab/rapidpro-rumor-app.git
-    cd rapidpro-rumor-app
+    git clone https://github.com/mikefab/rapidpro-sms-manager.git
+    cd rapidpro-sms-manager
     bundle
     mv config/mongoid.yml.example config/mongoid.yml
     Start the server with: rails s
     Browse to localhost:3000/users/sign_up and create a user
     rails c
     User.first.update(role: 'admin')
+    mv .env.example .env
+
 
 ###Heroku###
 
 Deployment to Heroku is easy and free
+
 Add the MongoLab Add-on.
 
 ###Tech Stack###
