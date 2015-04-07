@@ -51,7 +51,7 @@ Then browse to '/' to see the diagrams.
     git clone https://github.com/mikefab/rapidpro-sms-manager.git
     cd rapidpro-sms-manager
     bundle
-    mv config/mongoid.yml.example config/mongoid.yml
+    cp config/mongoid.yml.example config/mongoid.yml
     Start the server with: rails s
     Browse to localhost:3000/users/sign_up and create a user
     rails c
