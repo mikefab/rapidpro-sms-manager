@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @primary_nodes = {}
-    Completion.where(rumor: false).group_by{|e| e.primary}.keys.each do |e|
+    Completion.non_rumors.group_by{|e| e.primary}.keys.each do |e|
       @primary_nodes[e] = Completion.primary_node_text(e)
     end
   end
