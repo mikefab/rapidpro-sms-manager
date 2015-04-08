@@ -2,7 +2,8 @@
 
 [Rapidpro](http://www.rapidpro.io) flows can be configured with webhooks that forward the content of sms responses to a url. 
 
-This application runs separate from Rapidpro and is designed to receive these responses.
+This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server. 
+
 
 There are two parts: 
 
@@ -52,10 +53,10 @@ Then browse to '/' to see the diagrams.
     cd rapidpro-sms-manager
     bundle
     cp config/mongoid.yml.example config/mongoid.yml
-    Start the server with: rails s
+    Start the server with: bundle exec rails s
     Browse to localhost:3000/users/sign_up and create a user
-    rails c
-    User.first.update(role: 'admin')
+    bundle exec rails c
+    User.first.update(role: 'admin') # User must be admin in order to see rumors
     mv .env.example .env
 
 
