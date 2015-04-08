@@ -23,6 +23,17 @@ class Completion
   
   embeds_many :steps
 
+  # Normal survey sms' not from trigger based rumor surveys
+  def self.non_rumors
+    Completion.where(
+      :is_rumor.ne      => true, 
+      :is_fake_rumor.ne => true
+      ).order_by(
+        :arrived_on => 'desc'
+      ) 
+  end
+
+
   def self.rumors(are_deleted)
     Completion.where(
       is_rumor: true,
