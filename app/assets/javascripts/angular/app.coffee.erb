@@ -9,21 +9,21 @@ angular.module('myApp', ['myApp.controllers', 'myApp.services', 'myApp.directive
       #flashProvider.errorClassnames.push "alert-danger"
     #
     # For any unmatched url, redirect to /state1
-      $urlRouterProvider.otherwise "/current"
+      $urlRouterProvider.otherwise '/current'
       
       #
       # Now set up the states
-      $stateProvider.state('current',
-        url: "/current"
+      $stateProvider
+
+      .state 'current',
+        url: '/current'
         templateUrl: "<%= asset_path 'current_rumors.html' %>"
         controller: 'rumorCtrl'
-        activetab: 'current'
 
-      ).state('deleted',
-        url: "/deleted"
+      .state 'deleted',
+        url: '/deleted'
         templateUrl: "<%= asset_path 'deleted_rumors.html' %>"
         controller: 'deletedRumorsCtrl'
         activetab: 'deleted'
 
-      )
   ]
