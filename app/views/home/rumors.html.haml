@@ -1,8 +1,22 @@
 %br
 .container
+  .jumbotron
+    %p
+      This is a limited demonstration of a rumor management app based on
+      = link_to 'Rapidpro', 'http://www.rapidpro.io'
+      webhooks. As rumors roll in, an admin can move them from 'new' to 'investigating' to either 'verified' or 'debunked', and assign an urgency level. Mouse over a rumor to add notes or respond to it. 
+    %p
+      The rumors below are not actual rumors, but conspiracy theories taken from
+      = succeed '.' do
+        = link_to 'rationalwiki.org', 'http://rationalwiki.org/wiki/List_of_conspiracy_theories'
+      Here is the
+      = succeed '.' do
+        = link_to 'repository', 'http://www.github.com/mikefab/rapidpro-sms-manager'
+
   / Static navbar
   %nav.navbar.navbar-default
     .container-fluid
+
       / Brand and toggle get grouped for better mobile display
       .navbar-header
         %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
