@@ -11,7 +11,7 @@ There are two parts:
    Live demo: http://askliberia.herokuapp.com/
 
 
-2. An interface for managing and responding to rumors. Live demo soon to come.
+2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
 
 
 ###WARNINGS###
