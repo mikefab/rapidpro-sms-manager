@@ -8,7 +8,7 @@ This application, developed with ruby on rails, runs separate from Rapidpro, a d
 There are two parts: 
 
 1. A module for visualizing the results of surveys. 
-   Live demo: http://askliberia.herokuapp.com/
+   Live demo: http://rapidpro-sms-manager.herokuapp.com
 
 
 2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
