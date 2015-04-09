@@ -6,23 +6,23 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .row
-      .col-xs-3
-        &nbsp;&nbsp;
-        %span
-          = nav_link 'diagrams', root_url 
-        &nbsp;&nbsp;
-        %span
-          = nav_link 'rumors', rumors_path 
+    .container.fluid
+      .row
+        .col-xs-3
+          %span
+            = nav_link 'diagrams', root_url 
+          &nbsp;&nbsp;
+          %span
+            = nav_link 'rumors', rumors_path 
 
-      .col-xs-8
+        .col-xs-8
 
-      .col-xs-1
-        %span
-          - unless current_user
-            = link_to 'login', new_user_session_path
-          - else
-            = link_to "log out", destroy_user_session_path, method: :delete
+        .col-xs-1
+          %span
+            - unless current_user
+              = link_to 'login', new_user_session_path
+            - else
+              = link_to "log out", destroy_user_session_path, method: :delete
 
     .container-fluid
       = yield
