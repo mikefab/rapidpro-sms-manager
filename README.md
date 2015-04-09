@@ -16,7 +16,7 @@ There are two parts:
 
 ###WARNINGS###
 - This is a prototype. It is not production ready.
-- This software was not create by the Rapidpro development team.
+- This software was not created by the Rapidpro development team.
 
 ###The Database###
 
