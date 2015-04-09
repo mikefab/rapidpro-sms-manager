@@ -11,12 +11,12 @@ There are two parts:
    Live demo: http://askliberia.herokuapp.com/
 
 
-2. An interface for managing and responding to rumors. Live demo soon to come.
+2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
 
 
-###WARNING###
-This is a prototype. It is not production ready.
-
+###WARNINGS###
+- This is a prototype. It is not production ready.
+- This software was not created by the Rapidpro development team.
 
 ###The Database###
 
@@ -45,6 +45,8 @@ Webhook: POST to /events
 
 Then browse to '/' to see the diagrams.
 
+Warning: While the rumor module is password protected, the diagram module is not. I will add a password protected diagram module soon.
+
 [Automatic graph layout with JointJS and Dagre](http://www.daviddurman.com/automatic-graph-layout-with-jointjs-and-dagre.html) was the basis for the diagram code. 
 
 ###Installation###
@@ -53,7 +55,7 @@ Then browse to '/' to see the diagrams.
     cd rapidpro-sms-manager
     bundle
     cp config/mongoid.yml.example config/mongoid.yml
-    Start the server with: bundle exec rails s
+    bundle exec rails s # Start the server with
     Browse to localhost:3000/users/sign_up and create a user
     bundle exec rails c
     User.first.update(role: 'admin') # User must be admin in order to see rumors
@@ -62,9 +64,10 @@ Then browse to '/' to see the diagrams.
 
 ###Heroku###
 
-Deployment to Heroku is easy and free
+Deployment to Heroku is free and easy:
 
-Add the MongoLab Add-on.
+heroku create
+heroku addons:add mongolab
 
 ###Tech Stack###
 
