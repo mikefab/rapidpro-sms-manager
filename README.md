@@ -14,7 +14,7 @@ There are two parts:
 2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
 
 
-###WARNINGS###
+###WARNING###
 - This is a prototype. It is not production ready.
 - This software was not created by the Rapidpro development team.
 
