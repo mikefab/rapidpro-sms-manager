@@ -8,10 +8,10 @@ This application, developed with ruby on rails, runs separate from Rapidpro, a d
 There are two modules: 
 
 1. A app for visualizing the results of surveys. 
-   Live demo: http://rapidpro-sms-manager.herokuapp.com
+   Demo: http://rapidpro-sms-manager.herokuapp.com
 
 
-2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
+2. An interface for managing and responding to rumors. Demo: http://rapidpro-sms-manager.herokuapp.com/rumors
 
 
 ###WARNING###
