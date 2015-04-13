@@ -5,9 +5,9 @@
 This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server. 
 
 
-There are two parts: 
+There are two modules: 
 
-1. A module for visualizing the results of surveys. 
+1. A app for visualizing the results of surveys. 
    Live demo: http://rapidpro-sms-manager.herokuapp.com
 
 
