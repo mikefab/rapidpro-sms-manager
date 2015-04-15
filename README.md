@@ -15,7 +15,7 @@ There are two modules:
 
 
 ###WARNING###
-- This is a prototype. It is not production ready.
+- This is a prototype.
 - This software was not created by the Rapidpro development team.
 
 ###The Database###
