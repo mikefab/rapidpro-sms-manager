@@ -2,7 +2,9 @@
 
 [Rapidpro](http://www.rapidpro.io) flows can be configured with webhooks that forward the content of sms responses to a url. 
 
-This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server. 
+This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server.
+
+Screencast: https://youtu.be/gFLNpSZuRaM
 
 
 There are two modules: 
