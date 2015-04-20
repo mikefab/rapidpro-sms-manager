@@ -9,7 +9,7 @@ Screencast: https://youtu.be/gFLNpSZuRaM
 
 There are two modules: 
 
-1. A app for visualizing the results of surveys. 
+1. An app for visualizing the results of surveys. 
    Demo: http://rapidpro-sms-manager.herokuapp.com
 
 
