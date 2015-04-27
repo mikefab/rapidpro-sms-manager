@@ -1,6 +1,6 @@
 .row
-  .col-md-2
-  .col-md-8
+  .col-xs-2
+  .col-xs-8
     %br
     %div
       %p
@@ -15,15 +15,15 @@
 
 %div.container-fluid{"ng-controller" => "surveyCtrl"}
   .row
-    .col-md-5
-    .col-md-6
+    .col-xs-5
+    .col-xs-6
       %div.pull-right{"ng-show" => 'loader.loading', style:'position:absolute;'}
         =image_tag asset_path('ajax-loader.gif')
-    .col-md-6
+    .col-xs-6
     
   %br
   .row
-    .col-md-3
+    .col-xs-3
       %p
         %br
         %strong{'ng-show' => 'surveys.length>0'}
@@ -31,7 +31,7 @@
 
 
       .row.pre-scrollable{style: 'min-height:600px;'}
-        .col-md-12
+        .col-xs-12
           %ul{'ng-repeat' => 'survey in surveys'}
             %li.entry{'ng-click' => 'get_diagram(survey.node)', style: 'cursor:pointer;', 'ng-class'=>"{active: selected == survey.node}"}
               {{survey.question}}
@@ -48,7 +48,7 @@
     %div{'ng-show' => 'surveys_loaded'}
       %strong{'ng-show' => 'surveys.length < 1', style: 'font-size:24px;'}
         There are no surveys yet :|
-      .col-md-9
+      .col-xs-9
         %p
           %diagram{nodes: 'nodes'}
             %div

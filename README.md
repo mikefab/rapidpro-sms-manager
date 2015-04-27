@@ -2,20 +2,22 @@
 
 [Rapidpro](http://www.rapidpro.io) flows can be configured with webhooks that forward the content of sms responses to a url. 
 
-This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server. 
+This application, developed with ruby on rails, runs separate from Rapidpro, a django app, and is designed to receive these responses. They do not need to run on the same server.
+
+Screencast: https://youtu.be/gFLNpSZuRaM
 
 
-There are two parts: 
+There are two modules: 
 
-1. A module for visualizing the results of surveys. 
-   Live demo: http://askliberia.herokuapp.com/
-
-
-2. An interface for managing and responding to rumors. Live demo: http://rapidpro-sms-manager.herokuapp.com/rumors
+1. An app for visualizing the results of surveys. 
+   Demo: http://rapidpro-sms-manager.herokuapp.com
 
 
-###WARNINGS###
-- This is a prototype. It is not production ready.
+2. An interface for managing and responding to rumors. Demo: http://rapidpro-sms-manager.herokuapp.com/rumors
+
+
+###WARNING###
+- This is a prototype.
 - This software was not created by the Rapidpro development team.
 
 ###The Database###
