@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
+  def return_home
+    redirect_to '/'
+  end
+
   # SMS could come either to /events or to /rumors
   def save_event(params, is_rumor=false)
     event  = Event.new(entry: params, ip: request.remote_ip)

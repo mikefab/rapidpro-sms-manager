@@ -9,7 +9,7 @@ gem 'hashie'
 gem 'bower-rails'
 gem 'haml-rails'
 gem 'rubocop'
-gem 'mongoid', '5.0.0.beta'
+gem 'mongoid', '~> 5.0.0'
 gem 'bson_ext'
 gem 'rails_12factor'
 gem 'responders', '~> 2.0'
@@ -43,6 +43,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+
+  gem 'rspec-rails', '~> 3.0'
+  gem "capybara"
+  gem "launchy"
+
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

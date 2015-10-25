@@ -6,10 +6,6 @@ class EventsController < ApplicationController
   before_action       :return_home, except: [:create]
   skip_before_filter  :verify_authenticity_token
 
-  def return_home
-    redirect_to '/'
-  end
-
   def create
     params[:text].chomp!
     # Store raw SMS from Rapidpro
