@@ -1,4 +1,4 @@
-#Rapidpro SMS Manager#
+# Rapidpro SMS Manager
 
 [Rapidpro](http://www.rapidpro.io) flows can be configured with webhooks that forward the content of sms responses to a url. 
 
@@ -16,17 +16,17 @@ There are two modules:
 2. An interface for managing and responding to rumors. Demo: http://rapidpro-sms-manager.herokuapp.com/rumors
 
 
-###WARNING###
+### WARNING
 - This is a prototype.
 - This software was not created by the Rapidpro development team.
 
-###The Database###
+### The Database
 
 This application uses Mongodb for its database. You will need to have it installed to use it. Check out the Mongodb installation information at:
 
     http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
 
-###The Rumor Module###
+### The Rumor Module
 
 Webhook: POST to /rumors
 
@@ -36,7 +36,7 @@ After logging in, visit the rumor module at /rumors (localhost:3000/rumors)
 
 Here is a link to more about [webhooks](http://docs.rapidpro.io/#article_378174).
 
-###Login###
+### Login
 
 This application uses Devise for a secure login to the rumor app. To create an authorized user, sign up at /users/sign_up and then use console to set the role to 'admin'.
 
@@ -51,7 +51,7 @@ Warning: While the rumor module is password protected, the diagram module is not
 
 [Automatic graph layout with JointJS and Dagre](http://www.daviddurman.com/automatic-graph-layout-with-jointjs-and-dagre.html) was the basis for the diagram code. 
 
-###Installation###
+### Installation
 
     git clone https://github.com/mikefab/rapidpro-sms-manager.git
     cd rapidpro-sms-manager
@@ -64,14 +64,14 @@ Warning: While the rumor module is password protected, the diagram module is not
     mv .env.example .env
 
 
-###Heroku###
+### Heroku
 
 Deployment to Heroku is free and easy:
 
 heroku create
 heroku addons:add mongolab
 
-###Tech Stack###
+### Tech Stack
 
 Rails
 Mongodb
@@ -79,7 +79,7 @@ Angular.js
 coffeescript & HAML
 
 
-### To do###
+### To do
 * Tests!
 * Pagination
 * Rumor search
